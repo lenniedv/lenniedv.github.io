@@ -1,0 +1,1207 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en" ng-app="infoSlipsApp">
+​
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta name="description" content="">
+	<meta name="author" content="InfoSlips">
+	<title>Infoslips-print.htm</title>
+​
+	<!-- inject:css -->
+	<link rel="stylesheet" href="infoslip.css">
+	<!-- endinject -->
+​
+</head>
+​
+<body class="print" ng-controller="printController as printCtrl" ng-cloak>
+	<div class="printContainer">
+		<!-- COVER LETTER SECTION -->
+		<div ng-if="printCtrl.language == 'ENG'" style="page-break-after: always">
+			
+			<div class="header">
+				<img style="width:100%" src="print-header.jpg" />
+			</div>
+
+			<div class="clearfix col-xs-12">
+			</div>
+
+			<div class="col-xs-12">
+				<p style="font-size: 9px !important;padding-left: 87px;padding-top: 8px;" class="header-company">
+					Mutualpark, Jan Smuts Drive, Pinelands 7405.  PO Box 207, Cape Town 8000, South Africa.<br />
+					Tel +27 (0)21 503 1770, Helpline 0860 234 234.  E-mail unittrusts@oldmutual.com, www.oldmutualinvest.com<br />
+					<br />
+					<br />
+					<br />
+					<br />
+				</p>
+			</div>
+
+			<div class="clearfix col-xs-12"></div>
+
+			<p style="padding-left: 101px;">
+				{{printCtrl.finalDateLong}}
+			</p>
+
+			<p style="padding-left: 101px;">
+				<span ng-if="printCtrl.client.EntityType == 'Individual'">{{printCtrl.client.Title}}
+					{{printCtrl.client.Initials}} {{printCtrl.client.Surname}}<br></span>
+				<span ng-if="printCtrl.client.EntityType == 'Corporate'">{{printCtrl.client.Corpname}}<br /></span>
+				{{printCtrl.client.Line1}}<br ng-if="printCtrl.client.Line1">
+				{{printCtrl.client.Line2}}<br ng-if="printCtrl.client.Line2">
+				{{printCtrl.client.Line3}}<br ng-if="printCtrl.client.Line3">
+				{{printCtrl.client.PostCode}}
+			</p>
+
+			<p ng-if="printCtrl.client.EntityType == 'Individual'">Dear {{printCtrl.client.Title}}
+				{{printCtrl.client.Initials}} {{printCtrl.client.Surname}}</p>
+			<p ng-if="printCtrl.client.EntityType == 'Corporate'">Dear {{printCtrl.client.Corpname}}</p>
+
+            <p style="padding: 5px 15px; border: 1px solid #000; background-color: #ccc;">
+                <strong>Please note:</strong> This updated InfoSlip is sent to you as the <strong>Total Value of your Portfolio as at 1 March 2020,</strong> reflected in your Transaction Statement previously sent to you on 26 June 2020, was incorrect - it was erroneously doubled. The Transaction Statement in this InfoSlip will now reflect the correct Portfolio Value. We sincerely apologise for any inconvenience caused.
+            </p>
+
+			<p>
+				We are pleased to bring you your quarterly transaction statement as at 31 May 2020.
+			</p>
+
+			<p>
+				<strong>Please note:</strong>
+                Your retirement fund investment was migrated to the Old Mutual Wealth administration platform in August 2019. As a result, for the tax period March to August 2019 you will receive your annual tax certificates from Old Mutual Unit Trusts. For the tax period August 2019 to February 2020, your tax certificates will be sent to you from Old Mutual Wealth.
+            </p>
+            
+            <p>
+                <strong>View your retirement fund investments</strong><br />
+                Visit MyOldMutual for a high-level overview of your portfolio or access "Old Mutual Wealth Client" from your secure login for more detailed reporting offered on your retirement portfolio.
+            </p>
+
+            <p>
+                If you do not yet have secure access, we encourage you to sign up for our secure site now. This will allow you to view your retirement portfolio and all other investments you have with Old Mutual online. To do this, please visit our website at www.oldmutualinvest.com, click "LOGIN" at the top of the page and request access to the "My Old Mutual" platform.
+            </p>
+
+            <p>
+                We are enhancing our online capabilities for this secure site and you will soon also be able to perform online transactions on your investments - we will keep you informed of these developments.
+            </p>
+
+            <p>
+                <strong>Beneficiary nomination action required from you</strong><br />
+                As communicated to you in your last transaction statement, it is important that you nominate your beneficiaries if you have not already done so. Please note that if you nominated beneficiaries prior to August 2019 they are no longer valid, as the Pension Funds Act requires nominations to be made in writing to each retirement fund. As you have been migrated to a new Old Mutual administration platform (and retirement fund), which now administers your retirement portfolio, you will need to re-nominate or update your beneficiaries.
+			</p>
+			
+			<p>Please complete and submit the beneficiary nomination form.</p>
+
+            <p>If you have any questions, please feel free to contact your financial planner, call our dedicated service centre on 0860 234 234 or email us at retire@oldmutual.com.</p>
+
+            <p>
+                Yours sincerely
+            </p>
+
+			<img src="signature_elize.jpg">
+
+			<p>
+				<strong>Elize Botha</strong><br />
+				Managing Director<br />
+			</p>
+			
+					
+		</div>
+		<div ng-if="printCtrl.language == 'AFR'" style="page-break-after: always">
+			<div class="header">
+				<img style="width:100%" src="print-header.jpg" />
+			</div>
+
+			<div class="clearfix col-xs-12">
+			</div>
+
+			<div class="col-xs-12">
+				<p style="font-size: 9px !important;padding-left: 87px;padding-top: 8px;" class="header-company">
+					Mutualpark, Jan Smuts Drive, Pinelands 7405.  PO Box 207, Cape Town 8000, South Africa.<br />
+					Tel +27 (0)21 503 1770, Helpline 0860 234 234.  E-mail unittrusts@oldmutual.com, www.oldmutualinvest.com<br />
+					<br />
+					<br />
+					<br />
+					<br />
+				</p>
+			</div>
+
+			<div class="clearfix col-xs-12"></div>
+
+			<p style="padding-left: 101px;">
+				{{printCtrl.finalDateLong}}
+			</p>
+			<p style="padding-left: 101px;">
+				<span ng-if="printCtrl.client.EntityType == 'Individual'">{{printCtrl.client.Title}}
+					{{printCtrl.client.Initials}} {{printCtrl.client.Surname}}<br></span>
+				<span ng-if="printCtrl.client.EntityType == 'Corporate'">{{printCtrl.client.Corpname}}<br /></span>
+				{{printCtrl.client.Line1}}<br ng-if="printCtrl.client.Line1">
+				{{printCtrl.client.Line2}}<br ng-if="printCtrl.client.Line2">
+				{{printCtrl.client.Line3}}<br ng-if="printCtrl.client.Line3">
+				{{printCtrl.client.PostCode}}
+			</p>
+
+			<p ng-if="printCtrl.client.EntityType == 'Individual'">Beste {{printCtrl.client.Title}}
+				{{printCtrl.client.Initials}} {{printCtrl.client.Surname}}</p>
+			<p ng-if="printCtrl.client.EntityType == 'Corporate'">Beste {{printCtrl.client.Corpname}}</p>
+
+            <p style="padding: 5px 15px; border: 1px solid #000; background-color: #ccc;">
+                <strong>Neem asseblief kennis:</strong> Hierdie bygewerkte InfoSlip word aan u gestuur omdat die <strong>Totale Waarde van u Portefeulje soos op 1 Maart 2020,</strong> wat verskyn het op u Transaksiestaat wat op 26 Junie 2020 aan u gestuur is, verkeerd was - dit is per abuis verdubbel. Die Transaksiestaat in hierdie InfoSlip sal nou die korrekte Portefeuljewaarde aandui. Ons vra opreg om verskoning vir enige ongerief wat dit veroorsaak het.
+            </p>
+
+			<p>
+				Ons sluit graag vir u u kwartaallikse transaksiestaat soos op 31 Mei 2020 hierby in.
+			</p>
+
+			<p>
+				<strong>Neem asseblief kennis:</strong> U aftreefondsbelegging is in Augustus 2019 na die Old Mutual Wealth-administrasieplatform oorgedra. Daarom sal u vir die belastingtydperk Maart tot Augustus 2019 u jaarlikse belastingsertifikate van Old Mutual Unit Trusts ontvang. Vir die belastingtydperk Augustus 2019 tot Februarie 2020 sal u belastingsertifikate vanaf Old Mutual Wealth aan u gestuur word.
+            </p>
+
+            <p>
+                <strong>Bekyk u aftreefondsbeleggings</strong><br />
+                Besoek MyOldMutual vir ’n breë oorsig van u portefeulje, of meld aan om beveiligde toegang te kry tot “Old Mutual Wealth-kliënt”, vir meer volledige verslagdoening oor u aftreeportefeulje.
+            </p>
+
+            <p>
+                As u nog nie beveiligde toegang het nie, moedig ons u aan om nou vir ons beveiligde webwerf te registreer. Dit sal u in staat stel om u aftreeportefeulje en alle ander beleggings wat u by Old Mutual het aanlyn na te gaan. Om te registreer, besoek ons webwerf by www.oldmutualinvest.com, klik op "LOGIN" bo-aan die bladsy en versoek toegang tot die "My Old Mutual"-platform.
+            </p>
+
+            <p>
+                Ons is besig om ons aanlyn vermoëns vir hierdie beveiligde webwerf uit te brei en u sal binnekort ook aanlyn transaksies op u beleggings kan uitvoer - ons sal u op hoogte hou van hierdie ontwikkelinge.
+            </p>
+
+            <p>
+                <strong>Benoem asseblief u begunstigdes</strong><br />
+                Soos in u vorige transaksiestaat aan u gekommunikeer is, is dit belangrik dat u u begunstigdes benoem, indien u dit nog nie gedoen het nie. Neem asseblief kennis dat indien u voor Augustus 2019 begunstigdes benoem het, hulle nie meer geldig is nie, omdat die Wet op Pensioenfondse vereis dat skriftelike benoemings by elke aftreefonds ingedien word. Aangesien u na ’n nuwe Old Mutual-administrasieplatform (en aftreefonds) oorgedra is, wat nou u aftreeportefeulje administreer, sal u weer u begunstigdes moet benoem of die benoemings moet bywerk.
+            </p>
+            
+            <p>Vul en dien asseblief die begunstigdebenoemingvorm.</p>
+
+            <p>Indien u enige vrae het, kontak gerus u finansiële beplanner, skakel ons toegewyde dienssentrum by 0860 234 234, of stuur e-pos na retire@oldmutual.com.</p>
+
+            <p>
+                Vriendelike groete
+            </p>
+
+			<img src="signature_elize.jpg">
+
+			<p>
+				<strong>Elize Botha</strong><br />
+				Besturende Direkteur<br />
+			</p>
+		</div>
+		<!-- COVER LETTER SECTION END -->
+		
+		<div ng-if="printCtrl.language == 'ENG'">
+			<!-- HEADER -->
+			<div>
+				<div>
+					<div class="header">
+						<img style="width:100%" src="print-header.jpg" />
+					</div>
+				</div>
+
+				<div class="clearfix col-xs-12"></div>
+
+				<div class="col-xs-12">
+					<p style="font-size: 9px !important;padding-left: 87px;padding-top: 8px;" class="header-company">
+						Mutualpark, Jan Smuts Drive, Pinelands 7405.  PO Box 207, Cape Town 8000, South Africa.<br />
+						Tel +27 (0)21 503 1770, Helpline 0860 234 234.  E-mail unittrusts@oldmutual.com, www.oldmutualinvest.com<br />
+						<br />
+						<br />
+						<br />
+						<br />
+					</p>
+				</div>
+
+				<div class="clearfix col-xs-12"></div>
+
+				<div class="print-address">
+					<p style="padding-left: 101px;">
+						{{printCtrl.finalDateLong}}
+					</p>
+					<p style="padding-left: 101px;">
+						<span ng-if="printCtrl.client.EntityType == 'Individual'">{{printCtrl.client.Title}}
+							{{printCtrl.client.Initials}} {{printCtrl.client.Surname}}<br></span>
+						<span ng-if="printCtrl.client.EntityType == 'Corporate'">{{printCtrl.client.Corpname}}<br /></span>
+						<span ng-show="printCtrl.client.Line1">{{printCtrl.client.Line1}}<br></span>
+						<span ng-show="printCtrl.client.Line2">{{printCtrl.client.Line2}}<br></span>
+						<span ng-show="printCtrl.client.Line3">{{printCtrl.client.Line3}}<br></span>
+						<span ng-show="printCtrl.client.Line4">{{printCtrl.client.Line4}}<br></span>
+						<span ng-show="printCtrl.client.PostCode">{{printCtrl.client.PostCode}}</span>
+					</p>
+				</div>
+
+			</div> <!-- Close div for .row -->
+			<!-- HEADER -->
+			
+			<div>
+				<h3 ng-if="printCtrl.client.EntityType == 'Individual'">Portfolio of {{printCtrl.client.Title}} {{printCtrl.client.Initials}} {{printCtrl.client.Surname}}</h3>
+				<h3 ng-if="printCtrl.client.EntityType == 'Corporate'">Portfolio of {{printCtrl.client.Corpname}}</h3>
+				<h3>Client number: {{printCtrl.client.ClientNo}}</h3>
+				<p>
+					The total value of your portfolio as at <strong class="noWrap bold">31 May 2020</strong> was <strong class="noWrap bold">{{printCtrl.Totals.TotalPreviousPortfolioValue | currency: 'R '}}</strong>
+				</p>
+				<p>
+					The total value of your portfolio as at <strong	class="noWrap bold">31 August 2020</strong> is
+					<strong class="noWrap bold">{{printCtrl.Totals.TotalPortfolioValue | currency: 'R '}}</strong>
+				</p>
+			</div>
+
+			<div id="infopart3" class="infopart">
+				<div id="infopart3inner">
+					<div id="Portfolio" ng-repeat="(key, portfolio) in printCtrl.Portfolios">
+						<div class="row">
+							<div id="beneficiaryies" class="col-xs-12" ng-if="portfolio.ClientDetail.Portfolio === 'Pension'">
+								<div class="table-xs">
+									<div class="table-responsive">
+										<table class="table table-striped ">
+											<thead>
+												<tr>
+													<th colspan="5" style="text-align: left;">
+														Beneficiaries
+													</th>
+												</tr>
+												<tr style="background-color: #E5E5E5 !important;" ng-if="portfolio.Beneficiary">
+													<td style="text-align: left;vertical-align:top;color: #000000 !important;">
+														Beneficiary Name
+													</td>
+													<td style="text-align: left;vertical-align:top;color: #000000 !important;">
+														Date of birth
+													</td>
+													<td style="text-align:right;vertical-align:top;color: #000000 !important;">
+														Relationship
+													</td>
+													<td style="text-align:right;vertical-align:top;color: #000000 !important;">
+														Percentage
+													</td>
+													<td style="text-align:right;vertical-align:top;color: #000000 !important;">
+														Account Group Number
+													</td>
+												</tr>
+											</thead>
+											<tbody ng-if="portfolio.Beneficiary">
+												<tr class="even" ng-repeat="beneficiary in portfolio.Beneficiary">
+													<td style="text-align: left;vertical-align:top;">
+														{{ beneficiary.BenFirstNames }} {{ beneficiary.BenSurname }}
+													</td>
+													<td style="text-align: left;vertical-align:top;">
+														{{ printCtrl.newDate(beneficiary.BenDateOfBirth) | date: 'dd/MM/yyyy' }}
+													</td>
+													<td style="text-align:right;vertical-align:top;">
+														{{ beneficiary.BenRelationship }}
+													</td>
+													<td style="text-align:right;vertical-align:top;">
+														{{ beneficiary.BenPercentage }}%
+													</td>
+													<td style="text-align:right;vertical-align:top;">
+														{{ beneficiary.AccGrpNo }}
+													</td>
+												</tr>
+											</tbody>
+											<tbody ng-if="!portfolio.Beneficiary">
+												<tr>
+													<td colspan="5">No beneficiary currently nominated.</td>
+												</tr>
+											</tbody>
+										</table>
+									</div> <!-- Close div for .table-responsive -->
+								</div> <!-- Close div for .table-xs -->
+
+								<div class="space">
+									<br />
+								</div>
+							</div> <!-- Close div for .col-xs-12 -->
+						</div>
+
+						<div class="col-xs-12 clearfix">
+						</div>
+
+						<uib-accordion close-others="oneAtATime">
+
+							<!-- Build Table for each Fund -->
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 print-body"
+								ng-repeat="(value, investment) in printCtrl.getInvestmentType()[key]">
+
+								<div ng-if="!$first" class="col-xs-12">
+								</div>
+
+								<div>
+
+									<div class="row">
+										<h3 style="color:black;margin-bottom: -10px;">{{value}}</h3>
+									</div>
+									<div class="" ng-repeat="value in investment | orderBy:'value.FundDetail.FundName'">
+
+										<div style="page-break-inside: avoid!important;">
+											<div class="row" class="printTableRows">
+
+												<hr style="border-top: 1px black solid;margin-bottom: 7px; " />
+
+												<table style="width:100% ;page-break-inside: avoid!important;">
+													<tr>
+														<td style="width:40%;text-align:left">
+															<p class="bold-print">Contract Number:
+																<span class="bold">{{ value.FundDetail.AccountNumber }}</span>
+															</p>
+														</td>
+														<td style="width:60%;text-align:right">
+															<p class="bold-print">Fund Name:
+																<span class="bold">{{ value.FundDetail.FundName }}</span>
+															</p>
+														</td>
+													</tr>
+													<tr>
+														<td style="width:40%;text-align:left">
+															<p class="bold-print" ng-if="value.FundDetail.TINCode != ''">Annual Service Fee:
+																<span class="bold">{{ value.FundDetail.TINCode }}%</span>
+															</p>
+														</td>
+														<td style="width:60%;text-align:right">
+															<p class="pull-right-print bold-print">Financial adviser:
+																<span class="bold" ng-if="value.FundDetail.ServicingAgentName != '' && value.FundDetail.ServicingAgentName != 'None' && value.FundDetail.ServicingAgentName != 'none'">{{ value.FundDetail.ServicingAgentName }}</span>
+																<span class="bold" ng-if="value.FundDetail.ServicingAgentName == '' || value.FundDetail.ServicingAgentName == 'None' || value.FundDetail.ServicingAgentName == 'none'">No adviser appointed</span>
+															</p>
+														</td>
+													</tr>
+												</table>
+												<hr style="border-top: 1px black solid;margin-top: 0px;" />
+											</div> <!-- Close div for .row -->
+
+											<div class="row style=" page-break-inside: avoid!important;"">
+
+												<div class="table-responsive" style="width:100%">
+
+													<table class="table table-striped" style="width:100%">
+
+														<thead>
+
+															<tr>
+																<th
+																	style="text-align: left;width:150px; border-bottom-color: black;border-bottom-width: 1px;">
+																	Date
+																</th>
+																<th
+																	style="text-align: left;width:380px; border-bottom-color: black;border-bottom-width: 1px;">
+																	Description
+																</th>
+																<th
+																	style="text-align: right;width:150px; border-bottom-color: black;border-bottom-width: 1px;">
+																	Units
+																</th>
+																<th
+																	style="text-align: right;width:150px; border-bottom-color: black;border-bottom-width: 1px;">
+																	Unit Price (c)
+																</th>
+																<th
+																	style="text-align: right;width:150px; border-bottom-color: black;border-bottom-width: 1px;">
+																	Amount
+																</th>
+															</tr>
+
+															 <tr style="background-color: #E5E5E5 !important;">
+
+														<td
+															style="text-align: left;vertical-align:top;color: #000000 !important;">
+															{{ value.OpeningBal.Date }}
+														</td>
+
+														 <td
+															style="text-align: left;vertical-align:top;color: #000000 !important;">
+															<strong class="bold">Opening Balance</strong>
+														</td> 
+
+														 <td
+															style="text-align:right;vertical-align:top;color: #000000 !important;">
+															{{ value.OpeningBal.NoOfUnits | number: 2 }}
+														</td>
+
+														<td
+															style="text-align:right;vertical-align:top;color: #000000 !important;">
+															{{ value.OpeningBal.UnitPrice | number: 2 }}
+														</td>
+
+														<td
+															style="text-align:right;vertical-align:top;color: #000000 !important;">
+															{{ value.OpeningBal.MarketValue | currency: 'R ' }}
+														</td>
+
+													</tr>
+
+														</thead>
+
+														<tbody>
+
+															<tr class="even" ng-repeat="transaction in value.Transaction">
+
+																<td style="text-align: left;vertical-align:top;background: white;">
+																	{{ transaction.Date }}
+																</td>
+
+																<td style="text-align: left;vertical-align:top;background: white;">
+																	{{ transaction.Description }}
+																	<small ng-if="transaction.InitialCharges > 0"><br>Initial
+																		Charges</small>
+																</td>
+
+																<td style="text-align:right;vertical-align:top;background: white;">
+																	{{ transaction.NoOfUnits | number: 2 }}
+																</td>
+
+																<td style="text-align:right;vertical-align:top;background: white;">
+																	{{ transaction.UnitPrice | number: 2 }}
+																</td>
+
+																<td style="text-align:right;vertical-align:top;background: white;">
+																	{{ transaction.NetAmount | currency: 'R ' }}
+																	<small
+																		ng-if="transaction.InitialCharges > 0"><br>{{ transaction.InitialCharges | currency: 'R ' }}</small>
+																</td>
+
+															</tr>
+
+														</tbody>
+
+														<tfoot>
+
+															<tr style="background-color: #E5E5E5 !important;">
+
+																<td style="text-align: left;vertical-align:top;font-weight:bold">
+																	{{ value.ClosingBal.Date }}
+																</td>
+
+																<td style="text-align: left;vertical-align:top;font-weight:bold">
+																	Closing Balance
+																</td>
+
+																<td style="text-align:right;vertical-align:top;font-weight:bold">
+																	{{ value.ClosingBal.NoOfUnits | number: 2 }}
+																</td>
+
+																<td style="text-align:right;vertical-align:top;font-weight:bold">
+																	{{ value.ClosingBal.UnitPrice | number: 2 }}
+																</td>
+
+																<td style="text-align:right;vertical-align:top;font-weight:bold">
+																	{{ value.ClosingBal.MarketValue | currency: 'R ' }}
+																</td>
+
+															</tr>
+
+														</tfoot>
+
+													</table>
+
+												</div> <!-- Close div for .table-responsive -->
+
+											</div> <!-- Close div for .table-xs -->
+										</div>
+									</div> <!-- Close div for ng-repeat -->
+
+
+
+									<div id="EacTable" class="row " ng-repeat="eacTable in investment">
+
+										<!-- The loop prints the same value as investments(as repeat above), so we only print the first loop -->
+										<div class="col-xs-12" ng-if="$first">
+
+											<div ng-repeat="table in eacTable.eacTable | filter: { Product: value } as filteredItems">
+
+												<div id="notes" ng-if="$first">
+
+													<div class="clearfix col-xs-12">
+														<p>&nbsp;</p>
+													</div> <!-- Close div for clearfix -->
+
+
+													<h3 class="text-lGreen">{{value}} - Effective Annual Cost</h3>
+
+													<p>
+														The Effective Annual Cost (EAC) is a measure which has been introduced
+														to allow you to compare the charges you incur and their impact on
+														investment returns when you invest in different Financial Products. It
+														is expressed as an annualised percentage at a product level. The EAC is
+														made up of four components, which are added together, as shown in the
+														table below. The effect of some of the charges may vary, depending on
+														your investment period. The EAC calculation assumes that an investor
+														terminates his or her investment in the Financial Product at the end of
+														the relevant periods shown in the table.
+													</p>
+
+													<p class="bold">
+														Your Effective Annual Cost as at
+														{{printCtrl.returnDateLanguage(printCtrl.client.TaxYearEnd)}}
+														<!-- Your Effective Annual Cost as at 30 November 2018 -->
+													</p>
+
+													<p>&nbsp;</p>
+
+												</div> <!-- Close div for $first -->
+
+
+												<div class="table-xs">
+
+													<div class="swipe col-xs-12 text-center visible-xs">
+														<p><small class="bold ">swipe left to reveal more data &#10132;</small>
+														</p>
+													</div>
+
+													<div id="table-eac" class="table-responsive">
+
+														<table class="table eacTable table-striped">
+
+															<thead>
+
+																<tr>
+
+																	<th colspan="6">
+																		Effective Annual Cost: {{table.Product}}
+																		{{table.AccGrpNo}}
+																	</th>
+
+																</tr>
+
+																<tr>
+
+																	<th>
+																		Charges
+																	</th>
+
+																	<th align="center" class="text-center">
+																		1 Year
+																	</th>
+
+																	<th align="center" class="text-center">
+																		3 Years
+																	</th>
+
+																	<th align="center" class="text-center">
+																		5 Years
+																	</th>
+
+																	<th align="center" class="text-center">
+																		Term to Maturity<br>
+																		{{table.ContractTerm}} Years<sup>4</sup>
+																	</th>
+
+																</tr>
+
+															</thead>
+
+															<tbody>
+
+																<tr ng-repeat="(num, data) in table.EACData">
+
+																	<td>
+																		{{data.ChargeType}}<sup ng-if="!$first && !$last">{{num}}</sup>
+																	</td>
+
+																	<td align="center" class="text-center">
+																		{{data.OneYear}}
+																	</td>
+
+																	<td align="center" class="text-center">
+																		{{data.ThreeYears}}
+																	</td>
+
+																	<td align="center" class="text-center">
+																		{{data.FiveYears}}
+																	</td>
+
+																	<td align="center" class="text-center">
+																		{{data.TermToMaturity}}
+																	</td>
+
+																</tr>
+
+															</tbody>
+
+														</table>
+
+													</div> <!-- Close div for .table-responsive -->
+
+												</div> <!-- Close div for .table-xs -->
+
+
+
+												<div>
+
+													<p>
+														<strong class="bold">Notes:</strong><br>
+													</p>
+
+													<ol>
+
+														<li ng-if="table.Note1">{{table.Note1}}</li>
+
+														<li ng-if="table.Note2">{{table.Note2}}</li>
+
+														<li ng-if="table.Note3">{{table.Note3}}</li>
+
+														<li ng-if="table.Note4">{{table.Note4}}</li>
+
+													</ol>
+
+													<p>Figures that are rounded to one decimal place:</p>
+
+													<ul>
+
+														<li>
+															Certain existing charges will show as 0% due to their small size
+															relative to the value of your contract.
+														</li>
+
+														<li>
+															Differences in final EAC values can occur.
+														</li>
+
+													</ul>
+
+													<p>&nbsp;</p>
+
+												</div> <!-- Close div for ng-if -->
+
+											</div> <!-- Close div for .row -->
+
+										</div> <!-- Close div for ng-repeat -->
+
+
+
+									</div> <!-- Show/hide table EAC section -->
+
+								</div><!-- Close div for .uib-accordion-group -->
+
+							</div> <!-- Close div for .ng-repeat -->
+
+						</uib-accordion>
+
+						<div class="clearfix col-xs-12">
+							<p>&nbsp;</p>
+						</div>
+
+					</div> <!-- Close div for #Portfolio -->
+				</div>
+			</div>
+		</div>
+
+		<div ng-if="printCtrl.language == 'AFR'">
+			
+			<div>
+
+				<div>
+					<div class="header">
+						<img style="width:100%" src="print-header.jpg" />
+					</div>
+				</div>
+
+				<div class="clearfix col-xs-12">
+				</div>
+
+				<div class="col-xs-12">
+					<p style="font-size: 9px !important;padding-left: 87px;padding-top: 8px;" class="header-company">
+						Mutualpark, Jan Smuts Drive, Pinelands 7405.  PO Box 207, Cape Town 8000, South Africa.<br />
+						Tel +27 (0)21 503 1770, Helpline 0860 234 234.  E-mail unittrusts@oldmutual.com, www.oldmutualinvest.com<br />
+						<br />
+						<br />
+						<br />
+						<br />
+					</p>
+				</div>
+
+				<div class="clearfix col-xs-12"></div>
+
+				<div>
+					<p style="padding-left: 101px;">
+						{{printCtrl.finalDateLong}}
+					</p>
+					<p style="padding-left: 101px;">
+						<span ng-if="printCtrl.client.EntityType == 'Individual'">{{printCtrl.client.Title}} {{printCtrl.client.Initials}} {{printCtrl.client.Surname}}<br></span>
+						<span ng-if="printCtrl.client.EntityType == 'Corporate'">{{printCtrl.client.Corpname}}<br /></span>
+						<span ng-show="printCtrl.client.Line1">{{printCtrl.client.Line1}}<br></span>
+						<span ng-show="printCtrl.client.Line2">{{printCtrl.client.Line2}}<br></span>
+						<span ng-show="printCtrl.client.Line3">{{printCtrl.client.Line3}}<br></span>
+						<span ng-show="printCtrl.client.Line4">{{printCtrl.client.Line4}}<br></span>
+						<span ng-show="printCtrl.client.PostCode">{{printCtrl.client.PostCode}}</span>
+					</p>
+
+				</div>
+
+			</div> <!-- Close div for #printHeader -->
+
+			<div>
+				<h3 ng-if="printCtrl.client.EntityType == 'Individual'">Portefeulje van {{printCtrl.client.Title}} {{printCtrl.client.Initials}} {{printCtrl.client.Surname}}</h3>
+				<h3 ng-if="printCtrl.client.EntityType == 'Corporate'">Portefeulje van {{printCtrl.client.Corpname}}</h3>
+				<h3>Kliëntenommer: {{printCtrl.client.ClientNo}}</h3>
+				<p >
+					Die totale waarde van u portefeulje soos op <strong class="noWrap bold"	style="display:inline">31 Mei 2020</strong>
+					was <strong class="noWrap bold"style="display:inline">{{printCtrl.Totals.TotalPreviousPortfolioValue | currency: 'R '}}</strong>
+				</p>
+				<p >
+					Die totale waarde van u portefeulje soos op <strong class="noWrap bold"	style="display:inline">31 Augustus 2020</strong>
+					is <strong class="noWrap bold"style="display:inline">{{printCtrl.Totals.TotalPortfolioValue | currency: 'R '}}</strong>
+				</p>
+			</div>
+
+
+			<div id="infopart3" class="infopart">
+				<div id="infopart3inner" class="row">
+					<div id="Portfolio" ng-repeat="(key, portfolio) in printCtrl.Portfolios">
+						<div id="beneficiaries" class="col-xs-12" ng-if="portfolio.ClientDetail.Portfolio === 'Pensioen'">
+							<div class="table-xs">
+								<div class="table-responsive">
+									<table class="table table-striped ">
+										<thead>
+											<tr>
+												<th colspan="5" style="text-align: left;">
+													Begunstigdes
+												</th>
+											</tr>
+											<tr style="background-color: #E5E5E5 !important;"
+												ng-if="portfolio.Beneficiary">
+												<td
+													style="text-align: left;vertical-align:top;color: #000000 !important;">
+													Naam van Begunstigde
+												</td>
+												<td
+													style="text-align: left;vertical-align:top;color: #000000 !important;">
+													Geboortedatum
+												</td>
+												<td
+													style="text-align:right;vertical-align:top;color: #000000 !important;">
+													Verwantskap
+												</td>
+												<td
+													style="text-align:right;vertical-align:top;color: #000000 !important;">
+													Persentasie
+												</td>
+												<td
+													style="text-align:right;vertical-align:top;color: #000000 !important;">
+													Rekening Groep Nommer
+												</td>
+											</tr>
+										</thead>
+										<tbody ng-if="portfolio.Beneficiary">
+											<tr class="even" ng-repeat="beneficiary in portfolio.Beneficiary">
+												<td style="text-align: left;vertical-align:top;">
+													{{ beneficiary.BenFirstNames }} {{ beneficiary.BenSurname }}
+												</td>
+												<td style="text-align: left;vertical-align:top;">
+													{{ printCtrl.newDate(beneficiary.BenDateOfBirth) | date: 'dd/MM/yyyy' }}
+												</td>
+												<td style="text-align:right;vertical-align:top;">
+													{{ beneficiary.BenRelationship }}
+												</td>
+												<td style="text-align:right;vertical-align:top;">
+													{{ beneficiary.BenPercentage }}%
+												</td>
+												<td style="text-align:right;vertical-align:top;">
+													{{ beneficiary.AccGrpNo }}
+												</td>
+											</tr>
+										</tbody>
+										<tbody ng-if="!portfolio.Beneficiary">
+											<tr>
+												<td colspan="5">Geen begunstigde tans genomineer nie.</td>
+											</tr>
+										</tbody>
+									</table>
+								</div> <!-- Close div for .table-responsive -->
+							</div> <!-- Close div for .table-xs -->
+
+							<div class="space">
+								<br />
+							</div>
+						</div> <!-- Close div for .col-xs-12 -->
+
+						<div class="col-xs-12 clearfix">
+						</div>
+
+						<uib-accordion class="no-break" close-others="oneAtATime">
+
+							<!-- Build Table for each Fund -->
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-break print-body"
+								ng-repeat="(value, investment) in printCtrl.getInvestmentType()[key]">
+
+
+								<div>
+									<h4 style="color:black;">{{value}}</h4>
+
+									<div style="page-break-inside: avoid!important" class="no-break"
+										ng-repeat="value in investment | orderBy:'value.FundDetail.FundName'">
+										<hr
+											style="border-top: 1px black solid;margin-bottom: 10px;    margin-top: 10px;" />
+										<div class="row" style="page-break-inside: avoid!important">
+										
+											<table
+												style="margin-left:15px;    width: 96%;page-break-inside: avoid!important">
+												<tr style="width:100%;page-break-inside: avoid!important">
+													<td style="width: 40%">
+														<p class="bold-print">Rekeningnommer: 
+															<span class="bold">{{ value.FundDetail.AccountNumber }}</span>
+														</p>
+													</td>
+													<td style="width: 60%" >															
+														<p class="bold-print text-right">Fonds Naam:
+															<span class="bold">{{ value.FundDetail.FundName }}</span>
+														</p>
+													</td>
+												</tr>
+												<tr	style="width:100%;border-bottom:1px solid black;page-break-inside: avoid!important">
+													<td style="width: 40%">
+														<p class="bold-print" ng-if="value.FundDetail.TINCode != ''">Jaarlikse Diensfooi:
+															<span class="bold">{{ value.FundDetail.TINCode }}%</span>
+														</p>
+													</td>
+													<td style="width: 60%">
+														<p class="bold-print text-right">Finansiële adviseur: 
+															<span class="bold" ng-if="value.FundDetail.ServicingAgentName != '' && value.FundDetail.ServicingAgentName != 'None' && value.FundDetail.ServicingAgentName != 'none'">{{ value.FundDetail.ServicingAgentName }}</span>
+															<span class="bold" ng-if="value.FundDetail.ServicingAgentName == '' || value.FundDetail.ServicingAgentName == 'None' || value.FundDetail.ServicingAgentName == 'none'">Geen adviseur aangestel nie</span>
+														</p>
+													</td>
+												</tr>
+											</table>
+											<br />
+										</div> <!-- Close div for .row -->
+
+										<div>
+
+
+
+											<div class="table-responsive">
+
+												<table class="table table-striped ">
+
+													<thead>
+
+														<tr>
+															<th style="width:150px;" class="text-left">
+																Datum
+															</th>
+															<th style="width:380px" class="text-left">
+																Beskrywing
+															</th>
+															<th style="width:150px;" class="text-right">
+																Onderaandele
+															</th>
+															<th style="width:150px;" class="text-right">
+																Onderaandeelprys (c)
+															</th>
+															<th style="width:150px;" class="text-right">
+																Bedrag
+															</th>
+														</tr>
+
+														 <tr style="background-color: #E5E5E5 !important;">
+
+															<td
+																style="text-align: left;vertical-align:top;color: #000000 !important;">
+																{{ value.OpeningBal.Date }}
+															</td>
+
+															<td
+																style="text-align: left;vertical-align:top;color: #000000 !important;">
+																<strong class="bold">Beginsaldo</strong>
+															</td>
+
+															<td
+																style="text-align:right;vertical-align:top;color: #000000 !important;">
+																{{ value.OpeningBal.NoOfUnits | number: 2 }}
+															</td>
+
+															<td
+																style="text-align:right;vertical-align:top;color: #000000 !important;">
+																{{ value.OpeningBal.UnitPrice | number: 2 }}
+															</td>
+
+															<td
+																style="text-align:right;vertical-align:top;color: #000000 !important;">
+																{{ value.OpeningBal.MarketValue | currency: 'R ' }}
+															</td>
+
+														</tr> 
+
+													</thead>
+
+													<tbody>
+
+														<tr class="even"
+															ng-repeat="transaction in value.Transaction">
+
+															<td style="text-align: left;vertical-align:top;">
+																{{ transaction.Date }}
+															</td>
+
+															<td style="text-align: left;vertical-align:top;">
+																{{ transaction.Description }}
+																<small
+																	ng-if="transaction.InitialCharges > 0"><br>Aanvangskoste</small>
+															</td>
+
+															<td style="text-align:right;vertical-align:top;">
+																{{ transaction.NoOfUnits | number: 2 }}
+															</td>
+
+															<td style="text-align:right;vertical-align:top;">
+																{{ transaction.UnitPrice | number: 2 }}
+															</td>
+
+															<td style="text-align:right;vertical-align:top;">
+																{{ transaction.NetAmount | currency: 'R ' }}
+																<small
+																	ng-if="transaction.InitialCharges > 0"><br>{{ transaction.InitialCharges | currency: 'R ' }}</small>
+															</td>
+
+														</tr>
+
+													</tbody>
+
+													<tfoot>
+
+														<tr style="background-color: #E5E5E5 !important;">
+
+															<td style="text-align: left;vertical-align:top;font-weight:bold">
+																{{ value.ClosingBal.Date }}
+															</td>
+
+															<td style="text-align: left;vertical-align:top;font-weight:bold">
+																Eindsaldo
+															</td>
+
+															<td style="text-align:right;vertical-align:top;font-weight:bold">
+																{{ value.ClosingBal.NoOfUnits | number: 2 }}
+															</td>
+
+															<td style="text-align:right;vertical-align:top;font-weight:bold">
+																{{ value.ClosingBal.UnitPrice | number: 2 }}
+															</td>
+
+															<td style="text-align:right;vertical-align:top;font-weight:bold">
+																{{ value.ClosingBal.MarketValue | currency: 'R ' }}
+															</td>
+
+														</tr>
+
+													</tfoot>
+
+												</table>
+
+											</div> <!-- Close div for .table-responsive -->
+
+										</div> <!-- Close div for .table-xs -->
+
+									</div> <!-- Close div for ng-repeat -->
+
+
+									<div id="EacTable" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-break"
+										ng-repeat="eacTable in investment">
+
+										<!-- The loop prints the same value as investments(as repeat above), so we only print the first loop -->
+										<div class="col-xs-12" ng-if="$first">
+
+											<div class="row"
+												ng-repeat="table in eacTable.eacTable | filter: { Product: value } as filteredItems">
+
+												<div id="notes" ng-if="$first">
+
+													<div class="clearfix col-xs-12">
+														<p>&nbsp;</p>
+													</div> <!-- Close div for clearfix -->
+
+
+													<h3 class="text-lGreen">{{value}} - Effektiewe Jaarlikse Koste
+													</h3>
+
+													<p>
+														Die Effektiewe Jaarlikse Koste (EJK) is 'n maatstaf wat
+														ingestel is sodat sodat u die koste wat u aangaan en die
+														impak daarvan op beleggingsopbrengste kan vergelyk wanneer u
+														in verskillende finansiële produkte belê. Dit word uitgedruk
+														as 'n geannualiseerde persentasie op produkvlak. Die EJK
+														bestaan uit vier komponente, wat bymekaargetel word, soos in
+														die tabel hieronder aangedui word. Die uitwerking van
+														sommige van hierdie koste kan verskil, na gelang van u
+														beleggingstermyn. Die EJK-berekening aanvaar dat 'n belegger
+														sy of haar belegging in die finansiële produk aan die einde
+														van die betrokke tydperke soos aangedui in die tabel,
+														beëindig.
+													</p>
+
+													<p class="bold">
+														U Effektiewe Jaarlikse Koste soos op
+														{{printCtrl.returnDateLanguage(printCtrl.client.TaxYearEnd)}}
+														<!-- U Effektiewe Jaarlikse Koste soos op 30 November 2018 -->
+													</p>
+
+													<p>&nbsp;</p>
+
+												</div> <!-- Close div for ng-first -->
+
+
+												<div class="table-xs">
+
+
+
+													<div id="table-eac" class="table-responsive">
+
+														<table class="table eacTable table-striped">
+
+															<thead>
+
+																<tr>
+
+																	<th colspan="6">
+																		Effektiewe Jaarlikse Koste:
+																		{{table.Product}} {{table.AccGrpNo}}
+																	</th>
+
+																</tr>
+
+																<tr>
+
+																	<th>
+																		Impak van Koste
+																	</th>
+
+																	<th align="center" class="text-center">
+																		1 Jaar
+																	</th>
+
+																	<th align="center" class="text-center">
+																		3 Jaar
+																	</th>
+
+																	<th align="center" class="text-center">
+																		5 Jaar
+																	</th>
+
+																	<th align="center" class="text-center">
+																		Termyn tot uitkering<br>
+																		{{table.ContractTerm}} Jaar<sup>4</sup>
+																	</th>
+
+																</tr>
+
+															</thead>
+
+															<tbody>
+
+																<tr ng-repeat="(num, data) in table.EACData">
+
+																	<td>
+																		{{data.ChargeType}}<sup
+																			ng-if="!$first && !$last">{{num}}</sup>
+																	</td>
+
+																	<td align="center" class="text-center">
+																		{{data.OneYear}}
+																	</td>
+
+																	<td align="center" class="text-center">
+																		{{data.ThreeYears}}
+																	</td>
+
+																	<td align="center" class="text-center">
+																		{{data.FiveYears}}
+																	</td>
+
+																	<td align="center" class="text-center">
+																		{{data.TermToMaturity}}
+																	</td>
+
+																</tr>
+
+															</tbody>
+
+														</table>
+
+													</div> <!-- Close div for .table-responsive -->
+
+												</div> <!-- Close div for .table-xs -->
+
+
+
+												<div>
+
+													<p>
+														<strong class="bold">Aantekeninge:</strong><br>
+													</p>
+
+													<ol>
+
+														<li ng-if="table.Note1">{{table.Note1}}</li>
+
+														<li ng-if="table.Note2">{{table.Note2}}</li>
+
+														<li ng-if="table.Note3">{{table.Note3}}</li>
+
+														<li ng-if="table.Note4">{{table.Note4}}</li>
+
+													</ol>
+
+													<p>Syfers wat tot een desimaal afgerond is:</p>
+
+													<ul>
+
+														<li>
+															Sekere bestaande koste sal as 0% aangedui wees omdat dit
+															so klein is in verhouding tot die waarde van u kontrak.
+														</li>
+
+														<li>
+															Verskille in finale EJK-waardes kan voorkom.
+														</li>
+
+													</ul>
+
+													<p>&nbsp;</p>
+
+												</div> <!-- Close div for ng-if -->
+
+											</div> <!-- Close div for .row -->
+
+										</div> <!-- Close div for ng-repeat -->
+
+									</div> <!-- Show/hide table EAC section -->
+
+
+
+								</div><!-- Close div for .uib-accordion-group -->
+
+							</div> <!-- Close div for .ng-repeat -->
+
+						</uib-accordion>
+
+
+						<div class="clearfix col-xs-12">
+							<p>&nbsp;</p>
+						</div>
+
+
+					</div> <!-- Close div for #Portfolio -->
+
+				</div> <!-- Close div for #infopart3inner -->
+
+			</div> <!-- Close div for #infopart3 -->
+		</div>
+
+		<!-- FOOTER SECTION -->
+		<footer>		
+			<p>Old Mutual Investment Services (Pty) Limited. Reg No: 1996/000452/07<br/>Licensed Financial Services Provider</p>
+			<p><strong>To report unethical behaviour, call the Anonymous Reporting line 0800 222 117 or visit www.oldmutualanonymousreports.co.za</strong></p>
+		</footer>
+		
+	</div>
+​
+	<!-- inject:js -->
+	<script src="processedData.js"></script>
+	<script src="resources.js"></script>
+	<script src="templates.js"></script>
+	<script src="main.js"></script>
+	<!-- endinject -->
+​
+​
+</body>
+​
+</html>

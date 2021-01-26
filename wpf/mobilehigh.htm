@@ -1,0 +1,67 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta name="description" content="">
+	<meta name="author" content="InfoSlips OMA">
+
+	<title>Old Mutual - Unit Trust Statement</title>
+
+	<!-- inject:css -->
+	<link rel="stylesheet" href="infoslip.css">
+	<!-- endinject -->
+
+</head>
+
+<body>
+	<div ng-app="infoSlipsApp">
+		<div class="infoSlipApp" ng-controller="infoslipController as ifsCtrl">
+
+			<div ng-if="false" class="cloak-loader">
+				<img src='loader.gif'>
+			</div>
+
+			<div ng-cloak ng-include="ifsCtrl.loadLanding()">
+				
+			</div>
+
+		</div>
+	</div>
+
+	<script>
+
+		//THIS WILL THROW ERROR ON DEV, DO NOT REMOVE OR I WILL FIND YOU AND KILL YOU
+	
+		var historyUrl= "<xsl:value-of select="field[@name='StaticData']/param[@name='historyurl']/@value"/>";
+		var RecipientID = "<xsl:value-of select="@id" />";
+		var CustomerID= "<xsl:value-of select="field[@name='StaticData']/param[@name='customerid']/@value"/>";
+		var RunprofileID= "<xsl:value-of select="field[@name='StaticData']/param[@name='runprofileid']/@value"/>";
+		var PeriodID= "<xsl:value-of select="field[@name='StaticData']/param[@name='periodid']/@value"/>";
+		var TemplateID= "<xsl:value-of select="field[@name='StaticData']/param[@name='templateid']/@value"/>";
+		var fileName= "<xsl:value-of select="@id" />";
+
+		var v5Link= "<xsl:value-of select="field[@name='StaticData']/param[@name='onlineviewlinkV5']/@value"/>";
+
+		var PersonalDetailsViewerPostID = "7824b859-7f72-485a-8962-53e57a489517";
+		
+		// var testViewerPost= "386098ff-f0f4-4f5e-9adc-1c109ed31d46";
+	
+	</script>
+
+	<!-- inject:js -->
+	<script src="processedData.js"></script>
+	<script src="resources.js"></script>
+	<script src="templates.js"></script>
+	<script src="main.js"></script>
+	<!-- endinject -->
+
+</body>
+
+</html>
+
+
