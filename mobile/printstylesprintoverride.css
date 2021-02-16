@@ -1,0 +1,19 @@
+/* MAIN PAGE CLASSES */
+#printBody
+{
+	width:188mm;
+	border:none;
+	padding:0mm;
+	margin:10mm;
+	margin-bottom:0mm;
+	box-shadow:none;
+	}
+body
+{
+	background-color:#FFF;
+	}
+	
+.printMessage
+{
+    display:none;
+    }
