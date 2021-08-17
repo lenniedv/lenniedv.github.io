@@ -2,6 +2,7 @@ function Kennel(x, y) {
     this.x_pos = x;
     this.y_pos = y;
     this.isReached = false;
+	this.frameCount = 0;
 
     this.draw = function() {
 
@@ -49,10 +50,12 @@ function Kennel(x, y) {
 	    rect(this.x_pos + 140, this.y_pos - 100 , 50, 50);
     }
 
-    this.check = function(x, y) {
+    this.check = function(x, y, frameCount, sounds) {
         if (!this.isReached) {
             this.isReached = dist(x, y, this.x_pos, this.y_pos) < 20;
             if (this.isReached) {
+				sounds.kennel.play();
+				this.frameCount = frameCount + 150;
                 this.draw();
             }
         }

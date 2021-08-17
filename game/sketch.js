@@ -28,13 +28,32 @@ var state;
 var player;
 var platforms;
 
-var nightMode = true;
+var nightMode = false;
 var darkness = 0;
 var moon;
+var sounds;
 
 function setup() {
 	createCanvas(1024, 576);
 	initNewGame();
+}
+
+function preload()
+{
+    soundFormats('mp3','wav');
+    
+    //load your sounds here
+	sounds = {};
+    sounds.jump = loadSound('sounds/jump.wav');
+    sounds.jump.setVolume(0.1);
+	sounds.lost = loadSound('sounds/lifelost.wav');
+	sounds.lost.setVolume(0.1);
+	sounds.kennel = loadSound('sounds/kennelentry.wav');
+	sounds.kennel.setVolume(0.1);
+	sounds.gameover = loadSound('sounds/gameover.mp3');
+	sounds.gameover.setVolume(0.1);
+	sounds.levelup = loadSound('sounds/levelup.wav');
+	sounds.levelup.setVolume(0.1);
 }
 
 function initNewGame() {
@@ -200,7 +219,7 @@ function draw() {
 	fill(0, 154, 23);
 	rect(0, floorPos_y, width, height / 4); // draw some green ground
 
-	state = player.check(state, gameChar_y, height, startGame);
+	state = player.check(state, sounds, gameChar_y, height, startGame);
 
 	push();
 	translate(scrollPos, 0);
@@ -252,7 +271,7 @@ function draw() {
 	}
 
 	this.kennel.draw();
-	this.kennel.check(gameChar_world_x, gameChar_y);
+	this.kennel.check(gameChar_world_x, gameChar_y, frameCount, sounds);
 
 	pop();
 
@@ -266,16 +285,22 @@ function draw() {
 	drawScore();
 	drawHealth();
 
-	if (state.getLives() == 0) {
+	if (!state.gameOver &&
+		state.getLives() == 0) {
 		drawCenterText("Game over.\nPress space to continue.");
+		sounds.gameover.play();
+		noLoop();
+		state.gameOver = true;
 	}
 
 	// Draw game character.
 	if (!kennel.isReached) {
 		player.draw(gameChar_x, gameChar_y);
 	}
-	else {
+	else if (frameCount > kennel.frameCount) {
 		drawCenterText("Level complete.\nPress space to continue.");
+		sounds.levelup.play();
+		noLoop();
 		player.stopCharacter();
 	}
 
@@ -427,13 +452,16 @@ function keyPressed() {
 
 	// Space bar pressed to jump
 	if (keyCode == 32) {
-		if (state.getLives() == 0 || kennel.isReached) {
+		if (state.gameOver || state.getLives() == 0 || kennel.isReached) {
 			kennel.isReached = false;
 			startGame();
+			sounds.gameover.stop();
+			loop();
 		}
 		else if (gameChar_y == floorPos_y || IsOnPlatform()) {
 			gameChar_y -= 100;
 		}
+		sounds.jump.play();
 	}
 }
 

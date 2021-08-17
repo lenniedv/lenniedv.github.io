@@ -1,6 +1,7 @@
 function GameState() {
 	this.game_score = 0;
 	this.lives = 3;
+	this.game_over = false;
 	this.getScore = function() {
         return this.game_score;
     }

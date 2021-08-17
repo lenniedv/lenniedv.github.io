@@ -15,11 +15,12 @@ function Player(x, y) {
         this.stopCharacterFlag = false;
     }
 
-    this.check = function(state, y, height, restartGame) {
+    this.check = function(state, sounds, y, height, restartGame) {
         if (y > height) {
             if (state.getLives() > 0) {
                 state.looseLive();
                 if (state.getLives() > 0) {
+                    sounds.lost.play();
                     restartGame();
                 }
             }
