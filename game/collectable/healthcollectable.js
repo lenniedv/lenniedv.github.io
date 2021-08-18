@@ -3,6 +3,8 @@ function HealthCollectable(collect) {
     this.isFound = false;
 
     this.draw = function() {
+        if (this.isFound) return;
+
         fill(255, 0, 0);
         beginShape();
         vertex(this.collect.x_pos, this.collect.y_pos);
@@ -18,9 +20,10 @@ function HealthCollectable(collect) {
 	    noStroke();
     }
 
-    this.check = function(gameChar_world_x, gameChar_y, updateHealth) {
-        if (dist(gameChar_world_x, gameChar_y, this.collect.x_pos, this.collect.y_pos) < 50) {
+    this.check = function(gameChar_world_x, gameChar_y, sounds, updateHealth) {
+        if (!this.isFound && dist(gameChar_world_x, gameChar_y, this.collect.x_pos, this.collect.y_pos) < 50) {
             this.isFound = true;
+            sounds.life.play();
             updateHealth();
         }
     }

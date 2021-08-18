@@ -23,6 +23,7 @@ var canyons;
 var collectables;
 var health;
 var kennel;
+var enemies;
 
 var state;
 var player;
@@ -45,15 +46,19 @@ function preload()
     //load your sounds here
 	sounds = {};
     sounds.jump = loadSound('sounds/jump.wav');
-    sounds.jump.setVolume(0.1);
+    sounds.jump.setVolume(1);
 	sounds.lost = loadSound('sounds/lifelost.wav');
-	sounds.lost.setVolume(0.1);
+	sounds.lost.setVolume(1);
 	sounds.kennel = loadSound('sounds/kennelentry.wav');
-	sounds.kennel.setVolume(0.1);
+	sounds.kennel.setVolume(2);
 	sounds.gameover = loadSound('sounds/gameover.mp3');
-	sounds.gameover.setVolume(0.1);
+	sounds.gameover.setVolume(3);
 	sounds.levelup = loadSound('sounds/levelup.wav');
-	sounds.levelup.setVolume(0.1);
+	sounds.levelup.setVolume(3);
+	sounds.cookie = loadSound('sounds/cookie.wav');
+	sounds.cookie.setVolume(1);
+	sounds.life = loadSound('sounds/life.mp3');
+	sounds.life.setVolume(1);
 }
 
 function initNewGame() {
@@ -182,6 +187,23 @@ function startGame() {
 		y: 104
 	}
 
+	enemies = [
+		{
+			x_pos: 300,
+			y_pos: gameChar_y - 50,
+			type: ENEMY_TYPE.SPIDER,
+			direction: DIRECTION.DOWN,
+			range: 200
+		},
+		{
+			x_pos: 800,
+			y_pos: gameChar_y,
+			type: ENEMY_TYPE.CAT,
+			direction: DIRECTION.RIGHT,
+			range: 200
+		},
+	];
+
 	for (var i = 0; i < clouds.length; i++) {
 		clouds[i].object = new Cloud(clouds[i]);
 	}
@@ -201,6 +223,11 @@ function startGame() {
 		healths[i].object = collect;
 	}
 
+	for (var i = 0; i < enemies.length; i++) {
+		var enemy = new Enemy(enemies[i]);
+		enemies[i].object = enemy;
+	}
+
 	kennel = new Kennel(1200, gameChar_y - 10);
 }
 
@@ -212,6 +239,15 @@ function updateHealth() {
 	state.increaseHealth();
 }
 
+function killPlayer(type) {
+	if (type == ENEMY_TYPE.SPIDER) {
+		player.freeze(frameCount);
+	}
+	else {
+		player.isPlummeting = true;
+	}
+}
+
 function draw() {
 	background(135, 211, 248); // fill the sky blue
 
@@ -219,7 +255,7 @@ function draw() {
 	fill(0, 154, 23);
 	rect(0, floorPos_y, width, height / 4); // draw some green ground
 
-	state = player.check(state, sounds, gameChar_y, height, startGame);
+	state = player.check(state, sounds, gameChar_y, height, frameCount, startGame);
 
 	push();
 	translate(scrollPos, 0);
@@ -257,17 +293,18 @@ function draw() {
 	}
 
 	for (var i = 0; i < collectables.length; i++) {
-		if (collectables[i].object.isFound == false) {
-			collectables[i].object.draw();
-			collectables[i].object.check(gameChar_world_x, gameChar_y, updateScore);
-		}
+		collectables[i].object.draw();
+		collectables[i].object.check(gameChar_world_x, gameChar_y, sounds, updateScore);
 	}
 
 	for (var i = 0; i < healths.length; i++) {
-		if (healths[i].object.isFound == false) {
-			healths[i].object.draw();
-			healths[i].object.check(gameChar_world_x, gameChar_y, updateHealth);
-		}
+		healths[i].object.draw();
+		healths[i].object.check(gameChar_world_x, gameChar_y, sounds, updateHealth);
+	}
+
+	for (var i = 0; i < enemies.length; i++) {
+		enemies[i].object.draw();
+		enemies[i].object.check(gameChar_world_x, gameChar_y, killPlayer);
 	}
 
 	this.kennel.draw();
@@ -439,6 +476,8 @@ function drawText(myText, x, y) {
 // ---------------------
 
 function keyPressed() {
+
+	if (player.freezeFlag == true) return;
 
 	// Left arrow pressed to walk left
 	if (keyCode == 37) {

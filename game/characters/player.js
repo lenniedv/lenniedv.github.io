@@ -6,6 +6,8 @@ function Player(x, y) {
 	this.isFalling = false;
 	this.isPlummeting = false;
     this.stopCharacterFlag = false;
+    this.freezeCount = 0;
+    this.freezeFlag = false;
 
     this.stopCharacter = function() {
         this.stopCharacterFlag = true;
@@ -15,7 +17,18 @@ function Player(x, y) {
         this.stopCharacterFlag = false;
     }
 
-    this.check = function(state, sounds, y, height, restartGame) {
+    this.freeze = function(frameCount) {
+        this.freezeCount = frameCount + 200;
+        this.freezeFlag = true;
+    }
+
+    this.check = function(state, sounds, y, height, frameCount, restartGame) {
+        if (frameCount > this.freezeCount) {
+            this.freezeCount = 0;
+            this.x_pos += 10;
+            this.freezeFlag = false;
+        }
+
         if (y > height) {
             if (state.getLives() > 0) {
                 state.looseLive();
@@ -29,10 +42,11 @@ function Player(x, y) {
     }
         
     this.draw = function(x, y) {
-        if (this.stopCharacterFlag) return;
+        if (this.stopCharacterFlage) return;
 
         this.x_pos = x;
         this.y_pos = y;    
+
         if (this.isLeft && this.isFalling) {
             this.jumpLeft();
         }
@@ -54,8 +68,17 @@ function Player(x, y) {
     }
 
     this.frontFacing = function() {
-        stroke(color("black"));
-        strokeWeight(0.5);
+        
+        console.log(this.freezeFlag);
+
+        if (this.freezeFlag == true) {
+            stroke(color("blue"));
+            strokeWeight(2);
+        }
+        else {
+            stroke(color("black"));
+            strokeWeight(0.5);
+        }
     
         //head
         fill(rgba(133, 87, 35, 1), rgba(133, 87, 35, 1), rgba(133, 87, 35, 1));
@@ -108,8 +131,15 @@ function Player(x, y) {
     }
     
     this.jumpFaceForward = function() {
-        stroke(color("black"));
-        strokeWeight(0.5);
+        if (this.freezeFlag == true) {
+            stroke(color("blue"));
+            strokeWeight(2);
+        }
+        else {
+            stroke(color("black"));
+            strokeWeight(0.5);
+        }
+
         //head
         fill(rgba(133, 87, 35, 1), rgba(133, 87, 35, 1), rgba(133, 87, 35, 1));
         ellipse(this.x_pos, this.y_pos - 55, 20, 20);
@@ -162,8 +192,14 @@ function Player(x, y) {
     }
     
     this.walkLeft = function() {
-        stroke(color("black"));
-        strokeWeight(0.5);
+        if (this.freezeFlag == true) {
+            stroke(color("blue"));
+            strokeWeight(2);
+        }
+        else {
+            stroke(color("black"));
+            strokeWeight(0.5);
+        }
     
         //head
         fill(rgba(133, 87, 35, 1), rgba(133, 87, 35, 1), rgba(133, 87, 35, 1));
@@ -216,8 +252,14 @@ function Player(x, y) {
     }
     
     this.walkRight = function() {
-        stroke(color("black"));
-        strokeWeight(0.5);
+        if (this.freezeFlag == true) {
+            stroke(color("blue"));
+            strokeWeight(2);
+        }
+        else {
+            stroke(color("black"));
+            strokeWeight(0.5);
+        }
     
         //head
         fill(rgba(133, 87, 35, 1), rgba(133, 87, 35, 1), rgba(133, 87, 35, 1));
@@ -270,8 +312,14 @@ function Player(x, y) {
     }
     
     this.jumpLeft = function() {
-        stroke(color("black"));
-        strokeWeight(0.5);
+        if (this.freezeFlag == true) {
+            stroke(color("blue"));
+            strokeWeight(2);
+        }
+        else {
+            stroke(color("black"));
+            strokeWeight(0.5);
+        }
     
         //head
         fill(rgba(133, 87, 35, 1), rgba(133, 87, 35, 1), rgba(133, 87, 35, 1));
@@ -324,8 +372,14 @@ function Player(x, y) {
     }
     
     this.jumpRight = function() {
-        stroke(color("black"));
-        strokeWeight(0.5);
+        if (this.freezeFlag == true) {
+            stroke(color("blue"));
+            strokeWeight(2);
+        }
+        else {
+            stroke(color("black"));
+            strokeWeight(0.5);
+        }
     
         //head
         fill(rgba(133, 87, 35, 1), rgba(133, 87, 35, 1), rgba(133, 87, 35, 1));
