@@ -5,11 +5,11 @@ function Cloud(config) {
     this.speed = config.speed;
     this.direction = config.direction;
 
-    this.draw = function(game_width) {
+    this.draw = function (game_width) {
 
         if (this.moving) {
             if (this.direction == DIRECTION.LEFT) {
-                this.x_pos = this.x_pos < 0 ? this.config.x_pos : this.x_pos -= this.speed;                
+                this.x_pos = this.x_pos < 0 ? this.config.x_pos : this.x_pos -= this.speed;
             }
             else {
                 this.x_pos = this.x_pos > game_width ? this.config.x_pos : this.x_pos += this.speed;
@@ -21,6 +21,6 @@ function Cloud(config) {
         ellipse(this.x_pos + 70, config.y_pos + 10, 50, 50);
         ellipse(this.x_pos + 30, config.y_pos + 16, 50, 50);
         ellipse(this.x_pos + 12, config.y_pos - 15, 40, 40);
-        ellipse(this.x_pos + 50, config.y_pos - 15, 40, 40);    
+        ellipse(this.x_pos + 50, config.y_pos - 15, 40, 40);
     }
 }
