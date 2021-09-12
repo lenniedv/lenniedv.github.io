@@ -477,7 +477,7 @@ var levels = [
         x_pos: 2000,
         y_pos: null,
         type: 'CAT',
-        score: 0,
+        score: 10,
         direction: 'LEFT',
         range: 300
       },
@@ -488,6 +488,274 @@ var levels = [
         score: 10,
         direction: 'LEFT',
         range: 100
+      }
+    ],
+    kennel: {
+      x_pos: 3000,
+      y_pos: -10
+    }
+  },
+  // Level 3
+  {
+    game: {
+      weapons: 10,
+      fire_range: 200,
+      mode: 'city',
+      music_type: 'city'
+    },
+    player: {
+      x_pos: 20,
+      y_pos: 0
+    },
+    trees: [],
+    clouds: [
+      {
+        x_pos: 299,
+        y_pos: 105,
+        move: true,
+        speed: 0.2,
+        direction: 'LEFT'
+      },
+      {
+        x_pos: 500,
+        y_pos: 95
+      },
+      {
+        x_pos: 800,
+        y_pos: 50,
+        move: true,
+        speed: 0.2,
+        direction: 'RIGHT'
+      }
+    ],
+    mountains: [],
+    canyons: [
+      {
+        x_pos: 550,
+        width: 200
+      },
+      {
+        x_pos: 1200,
+        width: 100
+      },
+      {
+        x_pos: 1600,
+        width: 100
+      },
+      {
+        x_pos: 2000,
+        width: 500
+      }
+    ],
+    platforms: [
+      {
+        x_pos: 300,
+        y_pos: -80,
+        width: 200,
+        height: 20,
+        moving: 'STATIC'
+      },
+      {
+        x_pos: 600,
+        y_pos: -100,
+        width: 200,
+        height: 20,
+        moving: 'LEFT_RIGHT'
+      },
+      {
+        x_pos: 700,
+        y_pos: -180,
+        width: 100,
+        height: 20,
+        moving: 'STATIC'
+      },
+      {
+        x_pos: 880,
+        y_pos: -210,
+        width: 120,
+        height: 20,
+        moving: 'STATIC'
+      },
+      {
+        x_pos: 1000,
+        y_pos: -120,
+        width: 100,
+        height: 20,
+        moving: 'STATIC'
+      },
+      {
+        x_pos: 1600,
+        y_pos: -50,
+        width: 100,
+        height: 20,
+        moving: 'STATIC'
+      },
+      {
+        x_pos: 1700,
+        y_pos: -100,
+        width: 200,
+        height: 20,
+        moving: 'STATIC'
+      },
+      {
+        x_pos: 1400,
+        y_pos: -150,
+        width: 200,
+        height: 20,
+        moving: 'STATIC'
+      },
+      {
+        x_pos: 2000,
+        y_pos: -100,
+        width: 100,
+        height: 20,
+        moving: 'STATIC'
+      },
+      {
+        x_pos: 2200,
+        y_pos: -140,
+        width: 100,
+        height: 20,
+        moving: 'STATIC'
+      },
+      {
+        x_pos: 2400,
+        y_pos: -150,
+        width: 200,
+        height: 20,
+        moving: 'STATIC'
+      },
+      {
+        x_pos: 2200,
+        y_pos: -250,
+        width: 300,
+        height: 20,
+        moving: 'STATIC'
+      },
+      {
+        x_pos: 2700,
+        y_pos: -100,
+        width: 200,
+        height: 20,
+        moving: 'LEFT_RIGHT'
+      }
+    ],
+    healths: [
+      {
+        x_pos: 950,
+        y_pos: -230,
+        size: 20
+      }
+    ],
+    collectables: [
+      {
+        x_pos: 400,
+        y_pos: -90,
+        size: 30
+      },
+      {
+        x_pos: 600,
+        y_pos: -110,
+        size: 30
+      },
+      {
+        x_pos: 800,
+        y_pos: null,
+        size: 30
+      },
+      {
+        x_pos: 1750,
+        y_pos: -120,
+        size: 30
+      },
+      {
+        x_pos: 1850,
+        y_pos: -120,
+        size: 30
+      },
+      {
+        x_pos: 2300,
+        y_pos: -260,
+        size: 30
+      },
+      {
+        x_pos: 2460,
+        y_pos: -260,
+        size: 30
+      }
+    ],
+    enemies: [
+      {
+        x_pos: 620,
+        y_pos: -120,
+        type: 'CAT',
+        score: 20,
+        direction: 'LEFT',
+        range: 50
+      },
+      {
+        x_pos: 1000,
+        y_pos: null,
+        type: 'CAT',
+        score: 20,
+        direction: 'LEFT',
+        range: 180
+      },
+      {
+        x_pos: 1000,
+        y_pos: null,
+        type: 'CAT',
+        score: 20,
+        direction: 'LEFT',
+        range: 180
+      },
+      {
+        x_pos: 1500,
+        y_pos: null,
+        type: 'CAT',
+        score: 20,
+        direction: 'LEFT',
+        range: 180
+      },
+      {
+        x_pos: 1600,
+        y_pos: null,
+        type: 'CAT',
+        score: 20,
+        direction: 'LEFT',
+        range: 100
+      },
+      {
+        x_pos: 2000,
+        y_pos: null,
+        type: 'CAT',
+        score: 20,
+        direction: 'LEFT',
+        range: 300
+      },
+      {
+        x_pos: 2400,
+        y_pos: -260,
+        type: 'CAT',
+        score: 20,
+        direction: 'LEFT',
+        range: 100
+      },
+      {
+        x_pos: 3000,
+        y_pos: null,
+        type: 'CAT',
+        score: 20,
+        direction: 'LEFT',
+        range: 200
+      },
+      {
+        x_pos: 3000,
+        y_pos: null,
+        type: 'CAT',
+        score: 20,
+        direction: 'LEFT',
+        range: 200
       }
     ],
     kennel: {
