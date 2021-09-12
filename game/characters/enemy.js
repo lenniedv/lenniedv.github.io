@@ -5,8 +5,9 @@ const ENEMY_TYPE = {
 
 function Enemy(config) {
   this.config = config
+  this.config.y_pos = getPos(config.y_pos, gameChar_y)
   this.x_pos = config.x_pos
-  this.y_pos = config.y_pos
+  this.y_pos = this.config.y_pos
   this.type = config.type
   this.direction = config.direction
   this.isFound = false
@@ -20,7 +21,7 @@ function Enemy(config) {
     if (this.isFound) return
 
     if (this.type == ENEMY_TYPE.SPIDER) {
-      var topY = config.y_pos - this.config.range
+      var topY = this.config.y_pos - this.config.range
 
       if (this.y_pos == topY) {
         this.direction = DIRECTION.DOWN
@@ -53,7 +54,7 @@ function Enemy(config) {
   }
 
   this.check = function (gc_x, gc_y, killPlayer) {
-    if (!this.isFound && dist(gameChar_world_x, gameChar_y, this.x_pos, this.y_pos) < 50) {
+    if (!this.isFound && dist(gc_x, gc_y, this.x_pos, this.y_pos) < 50) {
       this.isFound = true
       killPlayer(this.type)
     }

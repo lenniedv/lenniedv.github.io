@@ -21,9 +21,10 @@ function Fire(startX, startY, range) {
 
     this.x_pos = this.direction == DIRECTION.LEFT ? (this.x_pos -= 5) : (this.x_pos += 5)
 
-    fill(00, 0, 255)
+    stroke(0, 0, 128)
+    fill(238, 232, 170)
+    ellipse(this.x_pos, this.y_pos, 40, 40)
     noStroke()
-    ellipse(this.x_pos, this.y_pos, 20, 20)
   }
 
   this.check = function (enemy, killEnemy) {

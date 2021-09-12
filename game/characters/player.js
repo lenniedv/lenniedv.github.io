@@ -41,8 +41,9 @@ function Player(x, y) {
       if (state.lives > 0) {
         state.looseLive()
         if (state.lives > 0) {
-          state.music.bush.stop()
+          state.stopMusic()
           state.sounds.lost.play()
+          state.playMusic()
           restartGame()
         }
       }
@@ -54,6 +55,8 @@ function Player(x, y) {
 
     this.x_pos = x
     this.y_pos = y
+
+    console.log('x_pos: ', this.x_pos)
 
     if (this.isLeft && this.isFalling) {
       this.jumpLeft()

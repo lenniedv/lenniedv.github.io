@@ -1,18 +1,35 @@
 function GameState() {
+  this.current_level = GAME_CONFIG.current_level
   this.game_score = 0
-  this.lives = 3
+  this.lives = GAME_CONFIG.lives
   this.game_over = false
-  this.isPlaying = false
+  this.isGameStarted = false
+  this.isCompleted = false
   this.sounds = {}
   this.music = {}
-  this.nightMode = false
-  this.darkness = 0
-  this.fire_range = 200
+  this.init_fire_range = 0
+  this.init_weapon_count = 0
+  this.fire_range = 0
+  this.weapon_count = 0
   this.entryScreen
+  this.finalScreen
+  this.music_type
+
+  this.setup = function (config) {
+    this.init_fire_range = config.fire_range
+    this.fire_range = config.fire_range
+    this.init_weapon_count = config.weapons
+    this.weapon_count = config.weapons
+    this.music_type = config.music_type
+    this.mode = config.mode
+  }
 
   this.init = function () {
-    this.isPlaying = false
+    this.isGameStarted = false
+    this.isCompleted = false
+
     this.entryScreen = loadImage('assets/entryscreen.png')
+    this.finalScreen = loadImage('assets/finalscreen.png')
 
     soundFormats('mp3', 'wav')
 
@@ -40,13 +57,22 @@ function GameState() {
     this.music = {}
     this.music.city = loadSound('music/city.wav')
     this.music.city.setVolume(0.1)
-    this.music.bush = loadSound('music/bush.wav')
-    this.music.bush.setVolume(0.1)
-    this.music.bush.loop()
+    this.music.forest = loadSound('music/forest.wav')
+    this.music.forest.setVolume(0.1)
+    this.music.forest.loop()
   }
 
-  this.checkDarkness = function () {
-    return state.darkness > 200
+  this.playMusic = function () {
+    if (this.music_type == 'forest') {
+      this.music.forest.play()
+    } else {
+      this.music.city.play()
+    }
+  }
+
+  this.stopMusic = function () {
+    this.music.city.stop()
+    this.music.forest.stop()
   }
 
   this.updateScore = function () {
@@ -63,16 +89,31 @@ function GameState() {
   this.looseLive = function () {
     this.lives--
   }
+  this.fireWeapon = function () {
+    this.weapon_count--
+    this.sounds.fire.play()
+  }
   this.GameOver = function () {
     this.sounds.gameover.play()
     this.game_over = true
     noLoop()
   }
   this.restart = function () {
-    this.lives = 3
-    this.isPlaying = true
+    this.lives = GAME_CONFIG.lives
+    this.fire_range = this.init_fire_range
+    this.weapon_count = this.init_weapon_count
+    this.isGameStarted = true
     this.game_over = false
     this.sounds.gameover.stop()
+    loop()
+  }
+  this.nextLevel = function (start) {
+    state.current_level++
+    if (levels.length > state.current_level) {
+      start()
+    } else {
+      state.isCompleted = true
+    }
     loop()
   }
 }

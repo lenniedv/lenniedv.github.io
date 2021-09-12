@@ -1,3 +1,23 @@
+/*
+### The Game Project – The Grand Aventures Of Leo
+Author: Lennie De Villiers
+
+Broke the different game objects into different JavaScript files to make it modular. 
+Would in the future use ES2 or TypeScript.
+
+Levels are cofigured and read from levels.js
+
+The State manage the game status.
+
+Formatting code using Prettier (https://prettier.io) plugin.
+Sounds / music from https://freesound.org/
+*/
+
+const GAME_CONFIG = {
+  current_level: 0,
+  lives: 3
+}
+
 const MOVING = {
   STATIC: 'STATIC',
   LEFT_RIGHT: 'LEFT_RIGHT'
@@ -16,12 +36,12 @@ var floorPos_y
 var scrollPos
 var gameChar_world_x
 
-var trees_x
+var trees
 var clouds
 var mountains
 var canyons
 var collectables
-var health
+var healths
 var kennel
 var enemies
 
@@ -29,7 +49,6 @@ var state
 var player
 var platforms
 
-var moon
 var fire
 
 function setup() {
@@ -53,182 +72,62 @@ function restartGame() {
 }
 
 function startGame() {
-  state.music.bush.play()
-
   gameChar_x = width / 2
   gameChar_y = floorPos_y
 
   scrollPos = 0
   gameChar_world_x = gameChar_x - scrollPos
 
-  player = new Player(gameChar_world_x, gameChar_y)
-
-  trees_x = [50, 300, 900]
-
-  clouds = [
-    {
-      x_pos: 299,
-      y_pos: 105,
-      move: true,
-      speed: 0.2,
-      direction: DIRECTION.LEFT
-    },
-    {
-      x_pos: 500,
-      y_pos: 95
-    },
-    {
-      x_pos: 800,
-      y_pos: 50,
-      move: true,
-      speed: 0.2,
-      direction: DIRECTION.RIGHT
+  var levelDetails = levels[state.current_level]
+  for (const [key, value] of Object.entries(levelDetails)) {
+    if (key == 'game') {
+      state.setup(value)
+    } else if (key == 'player') {
+      gameChar_x = getPos(value.x_pos)
+      player = new Player(getPos(value.x_pos), getPos(value.y_pos))
+    } else if (key == 'kennel') {
+      kennel = new Kennel(getPos(value.x_pos), getPos(value.y_pos, gameChar_y))
+    } else if (key == 'trees') {
+      trees = []
+      value.forEach(x => trees.push(new Tree(x, floorPos_y - 40)))
+    } else if (key == 'clouds') {
+      clouds = []
+      value.forEach(x => clouds.push(new Cloud(x)))
+    } else if (key == 'mountains') {
+      mountains = []
+      for (var i = 0; i < value.length; i++) {
+        mountains.push(new Mountain(value[i], i % 2 > 0))
+      }
+    } else if (key == 'canyons') {
+      canyons = []
+      value.forEach(x => canyons.push(new Canyon(x)))
+    } else if (key == 'healths') {
+      healths = []
+      value.forEach(x => healths.push(new HealthCollectable(x)))
+    } else if (key == 'platforms') {
+      platforms = []
+      value.forEach(x => platforms.push(new Platform(x)))
+    } else if (key == 'collectables') {
+      collectables = []
+      value.forEach(x => collectables.push(new CookieCollectable(x)))
+    } else if (key == 'enemies') {
+      enemies = []
+      value.forEach(x => enemies.push(new Enemy(x)))
     }
-  ]
-
-  mountains = [
-    {
-      x_pos: 0,
-      y_pos: 434,
-      width: 200,
-      top_y_pos: 134
-    },
-    {
-      x_pos: 500,
-      y_pos: 434,
-      width: 200,
-      top_y_pos: 134
-    },
-    {
-      x_pos: 800,
-      y_pos: 434,
-      width: 200,
-      top_y_pos: 134
-    }
-  ]
-
-  canyons = [
-    {
-      x_pos: 200,
-      width: 50
-    },
-    {
-      x_pos: 400,
-      width: 50
-    },
-    {
-      x_pos: 700,
-      width: 80
-    }
-  ]
-
-  healths = [
-    {
-      x_pos: 300,
-      y_pos: gameChar_y - 10,
-      size: 20
-    }
-  ]
-
-  platforms = [
-    {
-      x_pos: 1,
-      y_pos: floorPos_y - 60,
-      width: 130,
-      height: 20,
-      moving: MOVING.STATIC
-    },
-    {
-      x_pos: 120,
-      y_pos: floorPos_y - 100,
-      width: 200,
-      height: 20,
-      moving: MOVING.LEFT_RIGHT
-    }
-  ]
-
-  collectables = [
-    {
-      x_pos: 100,
-      y_pos: gameChar_y - 10,
-      size: 30
-    },
-
-    {
-      x_pos: 600,
-      y_pos: gameChar_y - 10,
-      size: 30
-    },
-
-    {
-      x_pos: 800,
-      y_pos: gameChar_y - 10,
-      size: 30
-    }
-  ]
-
-  moon = {
-    x: 625,
-    y: 104
   }
-
-  enemies = [
-    {
-      x_pos: 300,
-      y_pos: gameChar_y - 50,
-      type: ENEMY_TYPE.SPIDER,
-      score: 0,
-      direction: DIRECTION.DOWN,
-      range: 200
-    },
-    {
-      x_pos: 800,
-      y_pos: gameChar_y,
-      type: ENEMY_TYPE.CAT,
-      score: 20,
-      direction: DIRECTION.RIGHT,
-      range: 200
-    }
-  ]
-
-  for (var i = 0; i < clouds.length; i++) {
-    clouds[i].object = new Cloud(clouds[i])
-  }
-
-  for (var i = 0; i < platforms.length; i++) {
-    var p = new Platform(platforms[i])
-    platforms[i].object = p
-  }
-
-  for (var i = 0; i < collectables.length; i++) {
-    var collect = new CookieCollectable(collectables[i])
-    collectables[i].object = collect
-  }
-
-  for (var i = 0; i < healths.length; i++) {
-    var collect = new HealthCollectable(healths[i])
-    healths[i].object = collect
-  }
-
-  for (var i = 0; i < enemies.length; i++) {
-    var enemy = new Enemy(enemies[i])
-    enemies[i].object = enemy
-  }
-
-  for (var i = 0; i < canyons.length; i++) {
-    var c = new Canyon(canyons[i])
-    canyons[i].object = c
-  }
-
-  kennel = new Kennel(1200, gameChar_y - 10)
 }
 
 function drawWelcome() {
   image(state.entryScreen, 0, 0, width, height)
 }
 
+function drawCompleted() {
+  image(state.finalScreen, 0, 0, width, height)
+}
+
 function killPlayer(type) {
   player.kill(type, frameCount)
+  state.playMusic()
 }
 
 function killEnemy(enemy) {
@@ -236,18 +135,32 @@ function killEnemy(enemy) {
   state.updateScoreBy(enemy.score)
 }
 
-function draw() {
-  background(135, 211, 248) // fill the sky blue
+function getSkyColor() {
+  return state.mode == 'forest' ? color(135, 211, 248) : color(36, 185, 249)
+}
 
-  if (!state.isPlaying) {
+function getFloorColor() {
+  return state.mode == 'forest' ? color(0, 154, 23) : color(104, 95, 80)
+}
+
+function draw() {
+  background(getSkyColor())
+
+  if (!state.isGameStarted) {
     drawWelcome()
     noLoop()
     return
   }
 
+  if (state.isCompleted) {
+    drawCompleted()
+    noLoop()
+    return
+  }
+
   noStroke()
-  fill(0, 154, 23)
-  rect(0, floorPos_y, width, height / 4) // draw some green ground
+  fill(getFloorColor())
+  rect(0, floorPos_y, width, height / 4)
 
   player.check(state, gameChar_y, height, frameCount, startGame)
 
@@ -255,52 +168,47 @@ function draw() {
   translate(scrollPos, 0)
 
   // Draw clouds.
-  if (!state.checkDarkness()) {
-    for (var i = 0; i < clouds.length; i++) {
-      clouds[i].object.draw(width)
-    }
+  for (var i = 0; i < clouds.length; i++) {
+    clouds[i].draw(width)
   }
 
   // Draw mountains.
   for (var i = 0; i < mountains.length; i++) {
-    new Mountain(mountains[i], i % 2 > 0).draw()
+    mountains[i].draw()
   }
 
   // Draw trees.
-
-  for (var i = 0; i < trees_x.length; i++) {
-    new Tree(trees_x[i], floorPos_y - 40).draw()
+  for (var i = 0; i < trees.length; i++) {
+    trees[i].draw()
   }
 
   // Draw canyons.
-
   for (var i = 0; i < canyons.length; i++) {
-    canyons[i].object.draw(floorPos_y, height)
-    canyons[i].object.check(gameChar_world_x, gameChar_y, floorPos_y, killPlayer)
+    canyons[i].draw(floorPos_y, height)
+    canyons[i].check(gameChar_world_x, gameChar_y, floorPos_y, killPlayer)
   }
-
-  // Draw collectable items
 
   // Draw platforms
   for (var i = 0; i < platforms.length; i++) {
-    platforms[i].object.draw()
+    platforms[i].draw(state)
   }
 
+  // Draw collectable items
   for (var i = 0; i < collectables.length; i++) {
-    collectables[i].object.draw()
-    collectables[i].object.check(gameChar_world_x, gameChar_y, state)
+    collectables[i].draw()
+    collectables[i].check(gameChar_world_x, gameChar_y, state)
   }
 
   for (var i = 0; i < healths.length; i++) {
-    healths[i].object.draw()
-    healths[i].object.check(gameChar_world_x, gameChar_y, state)
+    healths[i].draw()
+    healths[i].check(gameChar_world_x, gameChar_y, state)
   }
 
   for (var i = 0; i < enemies.length; i++) {
-    enemies[i].object.draw()
-    enemies[i].object.check(gameChar_world_x, gameChar_y, killPlayer)
+    enemies[i].draw()
+    enemies[i].check(gameChar_world_x, gameChar_y, killPlayer)
     if (fire) {
-      fire.check(enemies[i].object, killEnemy)
+      fire.check(enemies[i], killEnemy)
     }
   }
 
@@ -313,19 +221,13 @@ function draw() {
 
   pop()
 
-  if (state.nightMode) {
-    state.darkness = frameCount / 2
-    if (state.checkDarkness()) {
-      drawDarkness()
-    }
-  }
-
   drawScore()
   drawControls()
   drawHealth()
+  drawWeapons()
 
   if (!state.gameOver && state.lives == 0) {
-    state.music.bush.stop()
+    state.stopMusic()
     drawCenterText('Game over.\nPress space to continue.')
     state.GameOver()
   }
@@ -334,7 +236,7 @@ function draw() {
   if (!kennel.isReached) {
     player.draw(gameChar_x, gameChar_y)
   } else if (frameCount > kennel.frameCount) {
-    state.music.bush.stop()
+    state.stopMusic()
     drawCenterText('Level complete.\nPress space to continue.')
     state.sounds.levelup.play()
     noLoop()
@@ -377,44 +279,10 @@ function draw() {
   }
 }
 
-function drawStars() {
-  fill(255, 255, 255)
-
-  ellipse(394, 109, 8, 8)
-  ellipse(300, 173, 8, 8)
-  ellipse(654, 56, 5, 5)
-  ellipse(73, 100, 5, 5)
-  ellipse(155, 237, 5, 5)
-  ellipse(725, 198, 5, 5)
-  ellipse(616, 50, 5, 5)
-  ellipse(336, 264, 4, 4)
-  ellipse(257, 66, 4, 4)
-}
-
-function drawMoon() {
-  fill(254, 252, 215)
-  ellipse(moon.x, moon.y, 80, 80)
-}
-
-function drawDarkness() {
-  drawMoon()
-  drawStars()
-
-  var darknessApha = 0
-  if (state.darkness > 600) {
-    darknessApha = 150
-  } else if (state.darkness > 500) {
-    darknessApha = 100
-  }
-
-  fill(0, 0, 0, darknessApha)
-  rect(0, 0, 1024, 576)
-}
-
 function IsOnPlatform() {
   var result = false
   for (var i = 0; i < platforms.length; i++) {
-    result = platforms[i].object.check(gameChar_world_x, gameChar_y)
+    result = platforms[i].check(gameChar_world_x, gameChar_y)
     if (result) {
       break
     }
@@ -432,6 +300,15 @@ function drawHealth() {
   for (var i = 0; i < state.lives; i++) {
     drawHeart(110 + i * 20, 45, 15)
   }
+}
+
+function drawWeapons() {
+  drawText('Weapons: ', 10, 100)
+  stroke(0, 0, 128)
+  fill(238, 232, 170)
+  ellipse(125, 95, 20, 20)
+  drawText(state.weapon_count, 145, 105)
+  noStroke()
 }
 
 function drawControls() {
@@ -485,16 +362,21 @@ function keyPressed() {
   }
 
   if (keyCode == 13) {
-    fire = new Fire(gameChar_world_x, gameChar_y, state.fire_range)
-    state.sounds.fire.play()
+    if (state.weapon_count > 0) {
+      fire = new Fire(gameChar_world_x, gameChar_y - 10, state.fire_range)
+      state.fireWeapon()
+    }
   }
 
   if (keyCode == 32) {
-    if (!state.isPlaying) {
-      state.isPlaying = true
+    if (!state.isGameStarted) {
+      state.isGameStarted = true
+      state.playMusic()
       loop()
-    } else if (state.game_over || state.lives == 0 || kennel.isReached) {
+    } else if (kennel.isReached) {
       kennel.isReached = false
+      state.nextLevel(startGame)
+    } else if (state.game_over || state.lives == 0) {
       restartGame()
     } else if (gameChar_y == floorPos_y || IsOnPlatform()) {
       gameChar_y -= 100
@@ -515,4 +397,15 @@ function keyReleased() {
 function rgba(val1, val2, val3) {
   var result = color(val1, val2, val3)
   return result
+}
+
+function getPos(value, initValue) {
+  if (value == null) {
+    return initValue
+  }
+  if (initValue !== null) {
+    return value < 0 ? initValue - Math.abs(value) : value
+  }
+
+  return value
 }
