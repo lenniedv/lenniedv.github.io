@@ -182,7 +182,7 @@ var levels = [
         x_pos: 460,
         y_pos: null,
         type: 'CAT',
-        score: 20,
+        score: 5,
         direction: 'RIGHT',
         range: 200
       },
@@ -190,7 +190,7 @@ var levels = [
         x_pos: 1200,
         y_pos: null,
         type: 'CAT',
-        score: 20,
+        score: 5,
         direction: 'RIGHT',
         range: 50
       },
@@ -198,7 +198,7 @@ var levels = [
         x_pos: 1600,
         y_pos: null,
         type: 'CAT',
-        score: 20,
+        score: 5,
         direction: 'RIGHT',
         range: 300
       },
@@ -206,7 +206,7 @@ var levels = [
         x_pos: 1800,
         y_pos: null,
         type: 'CAT',
-        score: 20,
+        score: 5,
         direction: 'RIGHT',
         range: 300
       },
@@ -214,7 +214,7 @@ var levels = [
         x_pos: 2000,
         y_pos: null,
         type: 'CAT',
-        score: 20,
+        score: 5,
         direction: 'RIGHT',
         range: 100
       }
@@ -233,9 +233,10 @@ var levels = [
       music_type: 'forest'
     },
     player: {
-      x_pos: 0,
+      x_pos: 20,
       y_pos: 0
     },
+    trees: [500, 900, 1350],
     clouds: [
       {
         x_pos: 299,
@@ -268,58 +269,229 @@ var levels = [
         y_pos: 434,
         width: 200,
         top_y_pos: 134
+      },
+      {
+        x_pos: 1800,
+        y_pos: 434,
+        width: 200,
+        top_y_pos: 134
       }
     ],
     canyons: [
       {
-        x_pos: 200,
-        width: 50
+        x_pos: 550,
+        width: 200
       },
       {
-        x_pos: 400,
-        width: 50
+        x_pos: 1200,
+        width: 100
+      },
+      {
+        x_pos: 1600,
+        width: 100
+      },
+      {
+        x_pos: 2000,
+        width: 500
       }
     ],
     platforms: [
       {
-        x_pos: 1,
-        y_pos: -60,
-        width: 130,
+        x_pos: 300,
+        y_pos: -80,
+        width: 200,
         height: 20,
         moving: 'STATIC'
+      },
+      {
+        x_pos: 600,
+        y_pos: -100,
+        width: 200,
+        height: 20,
+        moving: 'LEFT_RIGHT'
+      },
+      {
+        x_pos: 700,
+        y_pos: -180,
+        width: 100,
+        height: 20,
+        moving: 'STATIC'
+      },
+      {
+        x_pos: 880,
+        y_pos: -210,
+        width: 120,
+        height: 20,
+        moving: 'STATIC'
+      },
+      {
+        x_pos: 1000,
+        y_pos: -120,
+        width: 100,
+        height: 20,
+        moving: 'STATIC'
+      },
+      {
+        x_pos: 1600,
+        y_pos: -50,
+        width: 100,
+        height: 20,
+        moving: 'STATIC'
+      },
+      {
+        x_pos: 1700,
+        y_pos: -100,
+        width: 200,
+        height: 20,
+        moving: 'STATIC'
+      },
+      {
+        x_pos: 1400,
+        y_pos: -150,
+        width: 200,
+        height: 20,
+        moving: 'STATIC'
+      },
+      {
+        x_pos: 2000,
+        y_pos: -100,
+        width: 100,
+        height: 20,
+        moving: 'STATIC'
+      },
+      {
+        x_pos: 2200,
+        y_pos: -140,
+        width: 100,
+        height: 20,
+        moving: 'STATIC'
+      },
+      {
+        x_pos: 2400,
+        y_pos: -150,
+        width: 200,
+        height: 20,
+        moving: 'STATIC'
+      },
+      {
+        x_pos: 2200,
+        y_pos: -250,
+        width: 300,
+        height: 20,
+        moving: 'STATIC'
+      },
+      {
+        x_pos: 2700,
+        y_pos: -100,
+        width: 200,
+        height: 20,
+        moving: 'LEFT_RIGHT'
+      }
+    ],
+    healths: [
+      {
+        x_pos: 950,
+        y_pos: -230,
+        size: 20
       }
     ],
     collectables: [
       {
-        x_pos: 100,
-        y_pos: -10,
+        x_pos: 400,
+        y_pos: -90,
         size: 30
       },
-
       {
         x_pos: 600,
-        y_pos: -10,
+        y_pos: -110,
         size: 30
       },
-
       {
         x_pos: 800,
-        y_pos: -10,
+        y_pos: null,
+        size: 30
+      },
+      {
+        x_pos: 1750,
+        y_pos: -120,
+        size: 30
+      },
+      {
+        x_pos: 1850,
+        y_pos: -120,
+        size: 30
+      },
+      {
+        x_pos: 2300,
+        y_pos: -260,
+        size: 30
+      },
+      {
+        x_pos: 2460,
+        y_pos: -260,
         size: 30
       }
     ],
     enemies: [
       {
-        x_pos: 800,
+        x_pos: 520,
+        y_pos: -50,
+        type: 'SPIDER',
+        score: 0,
+        direction: 'DOWN',
+        range: 300
+      },
+      {
+        x_pos: 1000,
         y_pos: null,
         type: 'CAT',
-        score: 20,
-        direction: 'RIGHT',
+        score: 10,
+        direction: 'LEFT',
+        range: 180
+      },
+      {
+        x_pos: 1500,
+        y_pos: null,
+        type: 'CAT',
+        score: 10,
+        direction: 'LEFT',
+        range: 180
+      },
+      {
+        x_pos: 1650,
+        y_pos: -50,
+        type: 'SPIDER',
+        score: 0,
+        direction: 'DOWN',
         range: 200
+      },
+      {
+        x_pos: 1600,
+        y_pos: null,
+        type: 'CAT',
+        score: 10,
+        direction: 'LEFT',
+        range: 100
+      },
+      {
+        x_pos: 2000,
+        y_pos: null,
+        type: 'CAT',
+        score: 0,
+        direction: 'LEFT',
+        range: 300
+      },
+      {
+        x_pos: 2400,
+        y_pos: -260,
+        type: 'CAT',
+        score: 10,
+        direction: 'LEFT',
+        range: 100
       }
     ],
     kennel: {
-      x_pos: 1200,
+      x_pos: 3000,
       y_pos: -10
     }
   }
