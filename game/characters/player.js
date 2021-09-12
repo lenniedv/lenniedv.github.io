@@ -11,9 +11,12 @@ function Player(x, y) {
 
   this.kill = function (type, frameCount) {
     if (type == ENEMY_TYPE.SPIDER) {
+      this.isLeft = false
+      this.isRight = false
       this.freeze(frameCount)
     } else {
       this.isPlummeting = true
+      this.freezeFlag = false
     }
   }
 

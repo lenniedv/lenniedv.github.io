@@ -350,7 +350,7 @@ function drawText(myText, x, y, size = 20, weight = 6) {
 }
 
 function keyPressed() {
-  if (player.freezeFlag == true) return
+  if (player.freezeFlag == true || state.isCompleted == true) return
 
   if (keyCode == 37) {
     player.isLeft = true
