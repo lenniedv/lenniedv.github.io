@@ -14,6 +14,7 @@ function GameState() {
   this.entryScreen
   this.finalScreen
   this.music_type
+  this.end = false
 
   this.setup = function (config) {
     this.init_fire_range = config.fire_range
@@ -22,6 +23,7 @@ function GameState() {
     this.weapon_count = config.weapons
     this.music_type = config.music_type
     this.mode = config.mode
+    this.end = config.end
   }
 
   this.init = function () {

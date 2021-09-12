@@ -767,7 +767,7 @@ var levels = [
   {
     game: {
       weapons: 8,
-      fire_range: 200,
+      fire_range: 300,
       mode: 'city',
       music_type: 'city'
     },
@@ -968,6 +968,195 @@ var levels = [
     ],
     kennel: {
       x_pos: 2200,
+      y_pos: -10
+    }
+  },
+  // Level 5
+  {
+    game: {
+      weapons: 20,
+      fire_range: 100,
+      mode: 'city',
+      music_type: 'city',
+      end: true
+    },
+    player: {
+      x_pos: 20,
+      y_pos: 0
+    },
+    trees: [],
+    clouds: [
+      {
+        x_pos: 299,
+        y_pos: 105,
+        move: true,
+        speed: 0.2,
+        direction: 'LEFT'
+      },
+      {
+        x_pos: 500,
+        y_pos: 95
+      },
+      {
+        x_pos: 800,
+        y_pos: 50,
+        move: true,
+        speed: 0.2,
+        direction: 'RIGHT'
+      }
+    ],
+    mountains: [],
+    canyons: [],
+    healths: [
+      {
+        x_pos: 1250,
+        y_pos: -120,
+        size: 20
+      }
+    ],
+    platforms: [
+      {
+        x_pos: 120,
+        y_pos: -60,
+        width: 130,
+        height: 100,
+        moving: 'STATIC'
+      },
+      {
+        x_pos: 150,
+        y_pos: -150,
+        width: 130,
+        height: 100,
+        moving: 'STATIC'
+      },
+      {
+        x_pos: 320,
+        y_pos: -200,
+        width: 200,
+        height: 100,
+        moving: 'STATIC'
+      },
+      {
+        x_pos: 1200,
+        y_pos: -100,
+        width: 100,
+        height: 100,
+        moving: 'STATIC'
+      },
+      {
+        x_pos: 1350,
+        y_pos: -50,
+        width: 150,
+        height: 100,
+        moving: 'STATIC'
+      }
+    ],
+    collectables: [
+      {
+        x_pos: 200,
+        y_pos: -160,
+        size: 30
+      },
+      {
+        x_pos: 400,
+        y_pos: -220,
+        size: 30
+      },
+      {
+        x_pos: 600,
+        y_pos: -10,
+        size: 30
+      },
+      {
+        x_pos: 900,
+        y_pos: -10,
+        size: 30
+      },
+      {
+        x_pos: 1400,
+        y_pos: -60,
+        size: 30
+      },
+      {
+        x_pos: 1800,
+        y_pos: null,
+        size: 30
+      },
+      {
+        x_pos: 2000,
+        y_pos: null,
+        size: 30
+      }
+    ],
+    enemies: [
+      {
+        x_pos: 460,
+        y_pos: null,
+        type: 'CAT',
+        score: 5,
+        direction: 'RIGHT',
+        range: 200
+      },
+      {
+        x_pos: 800,
+        y_pos: null,
+        type: 'CAT',
+        score: 5,
+        direction: 'RIGHT',
+        range: 100
+      },
+      {
+        x_pos: 1200,
+        y_pos: null,
+        type: 'CAT',
+        score: 5,
+        direction: 'RIGHT',
+        range: 50
+      },
+      {
+        x_pos: 1600,
+        y_pos: null,
+        type: 'CAT',
+        score: 5,
+        direction: 'RIGHT',
+        range: 300
+      },
+      {
+        x_pos: 1800,
+        y_pos: null,
+        type: 'CAT',
+        score: 5,
+        direction: 'RIGHT',
+        range: 300
+      },
+      {
+        x_pos: 1700,
+        y_pos: null,
+        type: 'CAT',
+        score: 5,
+        direction: 'RIGHT',
+        range: 300
+      },
+      {
+        x_pos: 2000,
+        y_pos: null,
+        type: 'CAT',
+        score: 5,
+        direction: 'RIGHT',
+        range: 100
+      },
+      {
+        x_pos: 2300,
+        y_pos: null,
+        type: 'SMOKIE',
+        score: 10,
+        lives: 10,
+        direction: 'LEFT',
+        range: 400
+      }
+    ],
+    kennel: {
+      x_pos: 2500,
       y_pos: -10
     }
   }

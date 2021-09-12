@@ -7,7 +7,10 @@ Would in the future use ES2 or TypeScript.
 
 Levels are cofigured and read from levels.js
 
-The State manage the game status.
+- Spiders pause Leo for a couple of seconds, can't kill them with the power bark
+- Weapons (power bark) is indicated per level
+
+Enjoyed developing my first platform game after playing Super Mario on SNES.
 
 Formatting code using Prettier (https://prettier.io) plugin.
 Sounds / music from https://freesound.org/
@@ -132,6 +135,7 @@ function killPlayer(type) {
 function killEnemy(enemy) {
   enemy.kill()
   state.updateScoreBy(enemy.score)
+  fire = undefined
 }
 
 function getSkyColor() {
@@ -212,7 +216,7 @@ function draw() {
   }
 
   if (fire) {
-    fire.draw(player)
+    fire.draw()
   }
 
   this.kennel.draw()
@@ -224,6 +228,7 @@ function draw() {
   drawControls()
   drawHealth()
   drawWeapons()
+  drawSpokieKill()
 
   if (!state.gameOver && state.lives == 0) {
     state.stopMusic()
@@ -236,7 +241,7 @@ function draw() {
     player.draw(gameChar_x, gameChar_y)
   } else if (frameCount > kennel.frameCount) {
     state.stopMusic()
-    drawCenterText('Level complete.\nPress space to continue.')
+    drawCenterText('Level' + state.current_level + ' complete.\nPress space to continue.')
     state.sounds.levelup.play()
     noLoop()
     player.stopCharacter()
@@ -312,8 +317,8 @@ function drawWeapons() {
 
 function drawControls() {
   drawText('CONTROLS', width - 100, 30, 12, 2)
-  drawText('Left: <-', width - 100, 60, 12, 2)
-  drawText('Right: ->', width - 100, 80, 12, 2)
+  drawText('Left: A, <-', width - 100, 60, 12, 2)
+  drawText('Right: D, ->', width - 100, 80, 12, 2)
   drawText('Jump: SPACE', width - 100, 100, 12, 2)
   drawText('Fire: ENTER', width - 100, 120, 12, 2)
 }
@@ -325,6 +330,13 @@ function drawHeart(x, y, size) {
   bezierVertex(x - size / 2, y - size / 2, x - size, y + size / 3, x, y + size)
   bezierVertex(x + size, y + size / 3, x + size / 2, y - size / 2, x, y)
   endShape(CLOSE)
+}
+
+function drawSpokieKill() {
+  if (state.end) {
+    var lives = enemies.find(e => e.type == ENEMY_TYPE.SMOKIE).lives
+    drawText('Smokie Lives: ' + lives, width / 2, floorPos_y + 100)
+  }
 }
 
 function drawCenterText(myText) {
@@ -352,11 +364,11 @@ function drawText(myText, x, y, size = 20, weight = 6) {
 function keyPressed() {
   if (player.freezeFlag == true || state.isCompleted == true) return
 
-  if (keyCode == 37) {
+  if (keyCode == 37 || keyCode == 65) {
     player.isLeft = true
   }
 
-  if (keyCode == 39) {
+  if (keyCode == 39 || keyCode == 68) {
     player.isRight = true
   }
 
@@ -385,10 +397,10 @@ function keyPressed() {
 }
 
 function keyReleased() {
-  if (keyCode == 37) {
+  if (keyCode == 37 || keyCode == 65) {
     player.isLeft = false
   }
-  if (keyCode == 39) {
+  if (keyCode == 39 || keyCode == 68) {
     player.isRight = false
   }
 }

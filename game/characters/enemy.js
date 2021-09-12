@@ -1,6 +1,7 @@
 const ENEMY_TYPE = {
   SPIDER: 'SPIDER',
-  CAT: 'CAT'
+  CAT: 'CAT',
+  SMOKIE: 'SMOKIE'
 }
 
 function Enemy(config) {
@@ -12,9 +13,14 @@ function Enemy(config) {
   this.direction = config.direction
   this.isFound = false
   this.score = config.score
+  this.lives = config.lives
 
   this.kill = function () {
-    this.isFound = true
+    if (this.type == ENEMY_TYPE.SMOKIE && this.lives > 0) {
+      this.lives--
+    } else {
+      this.isFound = true
+    }
   }
 
   this.draw = function () {
@@ -50,6 +56,23 @@ function Enemy(config) {
       fill(255, 0, 0)
       noStroke()
       ellipse(this.x_pos, this.y_pos, 50, 50)
+    } else if (this.type == ENEMY_TYPE.SMOKIE) {
+      var destinationY =
+        this.config.direction == DIRECTION.RIGHT
+          ? this.config.x_pos + this.config.range
+          : config.x_pos - this.config.range
+
+      if (this.x_pos == destinationY) {
+        this.direction = this.config.direction == DIRECTION.RIGHT ? DIRECTION.LEFT : DIRECTION.RIGHT
+      } else if (this.x_pos == this.config.x_pos) {
+        this.direction = this.config.direction
+      }
+
+      this.x_pos = this.direction == DIRECTION.LEFT ? (this.x_pos -= 1) : (this.x_pos += 1)
+
+      fill(0, 0, 255)
+      noStroke()
+      ellipse(this.x_pos, this.y_pos, 100, 100)
     }
   }
 
