@@ -11,7 +11,7 @@ var levels = [
       x_pos: 20,
       y_pos: 0
     },
-    trees: [50, 900],
+    trees: [900, 1600, 2000],
     clouds: [
       {
         x_pos: 299,
@@ -47,6 +47,12 @@ var levels = [
       },
       {
         x_pos: 800,
+        y_pos: 434,
+        width: 200,
+        top_y_pos: 134
+      },
+      {
+        x_pos: 1600,
         y_pos: 434,
         width: 200,
         top_y_pos: 134

@@ -105,6 +105,7 @@ function GameState() {
     this.isGameStarted = true
     this.game_over = false
     this.sounds.gameover.stop()
+    this.playMusic()
     loop()
   }
   this.nextLevel = function (start) {

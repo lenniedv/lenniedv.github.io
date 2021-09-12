@@ -127,7 +127,6 @@ function drawCompleted() {
 
 function killPlayer(type) {
   player.kill(type, frameCount)
-  state.playMusic()
 }
 
 function killEnemy(enemy) {
