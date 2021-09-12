@@ -8,6 +8,7 @@ function Player(x, y) {
   this.stopCharacterFlag = false
   this.freezeCount = 0
   this.freezeFlag = false
+  this.direction = DIRECTION.RIGHT
 
   this.kill = function (type, frameCount) {
     if (type == ENEMY_TYPE.SPIDER) {

@@ -767,7 +767,7 @@ var levels = [
   {
     game: {
       weapons: 10,
-      fire_range: 300,
+      fire_range: 200,
       mode: 'city',
       music_type: 'city'
     },
@@ -975,7 +975,7 @@ var levels = [
   {
     game: {
       weapons: 20,
-      fire_range: 100,
+      fire_range: 200,
       mode: 'city',
       music_type: 'city',
       end: true
@@ -1089,7 +1089,7 @@ var levels = [
       }
     ],
     enemies: [
-      {
+      /*{
         x_pos: 460,
         y_pos: null,
         type: 'CAT',
@@ -1144,7 +1144,7 @@ var levels = [
         score: 5,
         direction: 'RIGHT',
         range: 100
-      },
+      },*/
       {
         x_pos: 2300,
         y_pos: null,

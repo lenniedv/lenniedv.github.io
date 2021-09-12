@@ -216,7 +216,7 @@ function draw() {
   }
 
   if (fire) {
-    fire.draw()
+    fire.draw(player.direction)
   }
 
   this.kennel.draw()
@@ -365,10 +365,12 @@ function keyPressed() {
   if (player.freezeFlag == true || state.isCompleted == true) return
 
   if (keyCode == 37 || keyCode == 65) {
+    player.direction = DIRECTION.LEFT
     player.isLeft = true
   }
 
   if (keyCode == 39 || keyCode == 68) {
+    player.direction = DIRECTION.RIGHT
     player.isRight = true
   }
 
