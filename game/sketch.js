@@ -241,7 +241,7 @@ function draw() {
     player.draw(gameChar_x, gameChar_y)
   } else if (frameCount > kennel.frameCount) {
     state.stopMusic()
-    drawCenterText('Level' + state.current_level + ' complete.\nPress space to continue.')
+    drawCenterText('Level ' + state.level + ' complete.\nPress space to continue.')
     state.sounds.levelup.play()
     noLoop()
     player.stopCharacter()

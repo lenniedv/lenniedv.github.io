@@ -1,5 +1,7 @@
 function GameState() {
   this.current_level = GAME_CONFIG.current_level
+  this.level = GAME_CONFIG.current_level
+  this.level++
   this.game_score = 0
   this.lives = GAME_CONFIG.lives
   this.game_over = false
@@ -112,8 +114,10 @@ function GameState() {
   }
   this.nextLevel = function (start) {
     state.current_level++
+    state.level++
     if (levels.length > state.current_level) {
       start()
+      this.playMusic()
     } else {
       state.isCompleted = true
     }
