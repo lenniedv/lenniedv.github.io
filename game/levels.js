@@ -2,7 +2,7 @@ var levels = [
   // Level 1
   {
     game: {
-      weapons: 5,
+      weapons: 10,
       fire_range: 200,
       mode: 'forest',
       music_type: 'forest'
@@ -227,7 +227,7 @@ var levels = [
   // Level 2
   {
     game: {
-      weapons: 5,
+      weapons: 10,
       fire_range: 200,
       mode: 'forest',
       music_type: 'forest'
@@ -766,7 +766,7 @@ var levels = [
   // Level 4
   {
     game: {
-      weapons: 8,
+      weapons: 10,
       fire_range: 300,
       mode: 'city',
       music_type: 'city'
