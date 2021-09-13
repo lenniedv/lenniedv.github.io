@@ -53,9 +53,11 @@ function Enemy(config) {
 
       this.x_pos = this.direction == DIRECTION.LEFT ? (this.x_pos -= 1) : (this.x_pos += 1)
 
-      fill(255, 0, 0)
-      noStroke()
-      ellipse(this.x_pos, this.y_pos, 50, 50)
+      if (this.direction == DIRECTION.LEFT) {
+        this.drawCatWalkLeft()
+      } else {
+        this.drawCatWalkRight()
+      }
     } else if (this.type == ENEMY_TYPE.SMOKIE) {
       var destinationY =
         this.config.direction == DIRECTION.RIGHT
@@ -70,9 +72,11 @@ function Enemy(config) {
 
       this.x_pos = this.direction == DIRECTION.LEFT ? (this.x_pos -= 1) : (this.x_pos += 1)
 
-      fill(0, 0, 255)
-      noStroke()
-      ellipse(this.x_pos, this.y_pos, 100, 100)
+      if (this.direction == DIRECTION.LEFT) {
+        this.drawCatWalkLeft()
+      } else {
+        this.drawCatWalkRight()
+      }
     }
   }
 
@@ -108,5 +112,109 @@ function Enemy(config) {
 
     ellipse(this.x_pos - 18, this.y_pos + 20, 8)
     ellipse(this.x_pos + 18, this.y_pos + 20, 8)
+  }
+
+  this.drawCatWalkLeft = function () {
+    stroke(color('black'))
+    strokeWeight(0.5)
+
+    //head
+    fill(this.getCatColor())
+    ellipse(this.x_pos, this.y_pos - 36, 20, 20)
+
+    //left eye
+    fill(rgba(5, 5, 5, 1), rgba(5, 5, 5, 1), rgba(5, 5, 5, 1))
+    ellipse(this.x_pos - 3, this.y_pos - 40, 2, 2)
+    //right eye
+    ellipse(this.x_pos + 3, this.y_pos - 40, 2, 2)
+
+    //nose
+    fill(color(255, 182, 193))
+    ellipse(this.x_pos - 5, this.y_pos - 36, 3, 3)
+
+    //mouth
+    fill(rgba(5, 5, 5, 1), rgba(5, 5, 5, 1), rgba(5, 5, 5, 1))
+    ellipse(this.x_pos - 3, this.y_pos - 32, 5, 0.5)
+
+    //left ear
+    fill(this.getCatColor())
+    ellipse(this.x_pos - 11, this.y_pos - 43, 5, 5)
+    //right ear
+    fill(this.getCatColor())
+    ellipse(this.x_pos + 11, this.y_pos - 43, 5, 5)
+
+    //bodthis.y_pos
+    fill(this.getCatColor())
+    ellipse(this.x_pos, this.y_pos - 15, 20, 23)
+
+    //left front leg
+    fill(this.getCatColor())
+    ellipse(this.x_pos + 10, this.y_pos - 17, 10, 14)
+    //right front leg
+    fill(this.getCatColor())
+    ellipse(this.x_pos - 10, this.y_pos - 17, 10, 14)
+
+    //left back leg
+    fill(this.getCatColor())
+    ellipse(this.x_pos + 10, this.y_pos - 2, 10, 10)
+    //right back leg
+    fill(this.getCatColor())
+    ellipse(this.x_pos - 10, this.y_pos - 2, 13, 13)
+
+    noStroke()
+  }
+
+  this.getCatColor = function () {
+    return this.type == ENEMY_TYPE.CAT ? color(255, 127, 0) : color(105, 105, 105)
+  }
+
+  this.drawCatWalkRight = function () {
+    stroke(color('black'))
+    strokeWeight(0.5)
+
+    //head
+    fill(this.getCatColor())
+    ellipse(this.x_pos, this.y_pos - 36, 20, 20)
+
+    //left eye
+    fill(rgba(5, 5, 5, 1), rgba(5, 5, 5, 1), rgba(5, 5, 5, 1))
+    ellipse(this.x_pos - 3, this.y_pos - 40, 2, 2)
+    //right eye
+    ellipse(this.x_pos + 3, this.y_pos - 40, 2, 2)
+
+    //nose
+    fill(color(255, 182, 193))
+    ellipse(this.x_pos + 5, this.y_pos - 36, 3, 3)
+
+    //mouth
+    fill(rgba(5, 5, 5, 1), rgba(5, 5, 5, 1), rgba(5, 5, 5, 1))
+    ellipse(this.x_pos + 3, this.y_pos - 32, 5, 0.5)
+
+    //left ear
+    fill(this.getCatColor())
+    ellipse(this.x_pos - 11, this.y_pos - 43, 5, 5)
+    //right ear
+    fill(this.getCatColor())
+    ellipse(this.x_pos + 11, this.y_pos - 43, 5, 5)
+
+    //bodthis.y_pos
+    fill(this.getCatColor())
+    ellipse(this.x_pos, this.y_pos - 15, 20, 23)
+
+    //left front leg
+    fill(this.getCatColor())
+    ellipse(this.x_pos + 10, this.y_pos - 17, 10, 14)
+    //right front leg
+    fill(this.getCatColor())
+    ellipse(this.x_pos - 10, this.y_pos - 17, 10, 14)
+
+    //left back leg
+    fill(this.getCatColor())
+    ellipse(this.x_pos + 10, this.y_pos - 2, 13, 13)
+    //right back leg
+    fill(this.getCatColor())
+    ellipse(this.x_pos - 10, this.y_pos - 2, 10, 10)
+
+    noStroke()
   }
 }

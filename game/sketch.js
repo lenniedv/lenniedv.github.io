@@ -17,7 +17,7 @@ Sounds / music from https://freesound.org/
 */
 
 const GAME_CONFIG = {
-  current_level: 1,
+  current_level: 0,
   lives: 3
 }
 
@@ -129,7 +129,7 @@ function drawCompleted() {
 }
 
 function killPlayer(type) {
-  //player.kill(type, frameCount)
+  player.kill(type, frameCount)
 }
 
 function killEnemy(enemy) {
