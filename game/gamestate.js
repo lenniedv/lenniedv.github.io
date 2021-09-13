@@ -35,22 +35,18 @@ function GameState() {
     this.entryScreen = loadImage('assets/entryscreen.png')
     this.finalScreen = loadImage('assets/finalscreen.png')
 
-    soundFormats('mp3', 'wav')
+    soundFormats('wav')
 
-    //load your sounds here
+    //load your sounds heres
     this.sounds = {}
     this.sounds.fire = loadSound('sounds/fire.wav')
     this.sounds.fire.setVolume(0.5)
-    this.sounds.enemyDie = loadSound('sounds/enemy_die.mp3')
-    this.sounds.enemyDie.setVolume(0.5)
     this.sounds.jump = loadSound('sounds/jump.wav')
     this.sounds.jump.setVolume(0.5)
     this.sounds.lost = loadSound('sounds/lifelost.wav')
     this.sounds.lost.setVolume(0.5)
     this.sounds.kennel = loadSound('sounds/kennelentry.wav')
     this.sounds.kennel.setVolume(0.5)
-    this.sounds.gameover = loadSound('sounds/gameover.mp3')
-    this.sounds.gameover.setVolume(0.2)
     this.sounds.levelup = loadSound('sounds/levelup.wav')
     this.sounds.levelup.setVolume(0.2)
     this.sounds.cookie = loadSound('sounds/cookie.wav')
@@ -99,7 +95,6 @@ function GameState() {
     this.sounds.fire.play()
   }
   this.GameOver = function () {
-    this.sounds.gameover.play()
     this.game_over = true
     noLoop()
   }
@@ -109,7 +104,6 @@ function GameState() {
     this.weapon_count = this.init_weapon_count
     this.isGameStarted = true
     this.game_over = false
-    this.sounds.gameover.stop()
     this.playMusic()
     loop()
   }
