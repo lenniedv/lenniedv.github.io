@@ -67,6 +67,7 @@ function GameState() {
   }
 
   this.playMusic = function () {
+    this.stopMusic()
     if (this.music_type == 'forest') {
       this.music.forest.play()
     } else {

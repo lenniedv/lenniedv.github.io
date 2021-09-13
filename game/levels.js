@@ -203,14 +203,6 @@ var levels = [
         range: 300
       },
       {
-        x_pos: 1800,
-        y_pos: null,
-        type: 'CAT',
-        score: 5,
-        direction: 'RIGHT',
-        range: 300
-      },
-      {
         x_pos: 2000,
         y_pos: null,
         type: 'CAT',
@@ -1089,7 +1081,7 @@ var levels = [
       }
     ],
     enemies: [
-      /*{
+      {
         x_pos: 460,
         y_pos: null,
         type: 'CAT',
@@ -1144,7 +1136,7 @@ var levels = [
         score: 5,
         direction: 'RIGHT',
         range: 100
-      },*/
+      },
       {
         x_pos: 2300,
         y_pos: null,
