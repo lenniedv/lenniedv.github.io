@@ -1,0 +1,101 @@
+html,
+body {
+    margin: 0px;
+    height: 100%;
+}
+
+@font-face {
+    font-family: 'Caveat-Title';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(fonts/title.woff2) format('woff2');
+}
+
+#sidebar {
+    grid-area: sidebar;
+    overflow-y: scroll;
+}
+
+#content {
+    grid-area: content;
+}
+
+.header {
+    grid-area: header;
+    font-family: Helvetica, sans-serif;
+}
+
+.footer {
+    grid-area: footer;
+}
+
+.sideBarItem {
+    max-height: 50px;
+    max-width: 50px;
+    padding: 5px;
+}
+
+.sideBarItem img {
+    max-height: 50px;
+    max-width: 50px;
+}
+
+.colourPalette {
+    grid-area: colourP;
+    display: flex;
+    flex-direction: grid;
+    flex-flow: wrap;
+}
+
+.options {
+    grid-area: options;
+    padding: 15px;
+}
+
+.colourSwatches {
+    box-sizing: border-box;
+    width: 40px;
+    height: 40px;
+    max-height: 40px;
+    max-width: 40px;
+    margin: 5px;
+}
+
+.wrapper {
+    display: grid;
+    height: 100%;
+    grid-template-columns: 70px 230px minmax(500px, 1fr);
+    grid-template-rows: 35px minmax(500px, 1fr) 160px;
+    grid-template-areas: 'header header header' 'sidebar content content' 'colourP colourP options';
+    background-color: #fff;
+    color: #000000;
+}
+
+.sidebar {
+    background-color: #000000;
+    color: #ececec;
+    font-size: 100%;
+    width: 200px;
+    margin-top: 10px;
+}
+
+.box {
+    background-color: #fff;
+    color: #fff;
+    font-size: 150%;
+    height: 100px;
+}
+
+.header {
+    height: 300px;
+    background-color: #000000;
+}
+
+.title {
+    font-family: 'Caveat-Title', cursive;
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 300px;
+}
