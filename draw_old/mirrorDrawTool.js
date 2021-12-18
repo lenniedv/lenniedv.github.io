@@ -7,8 +7,8 @@ function mirrorDrawTool() {
 	//line of symmetry is halfway across the screen
 	this.lineOfSymmetry = width / 2;
 
-	//this changes in the p5.dom click handler. So storing it as
-	//a variable self now means we can still access this in the handler
+	//this changes in the jquery click handler. So storing it as
+	//a variable self now means we can still access it in the handler
 	var self = this;
 
 	//where was the mouse on the last time draw was called.

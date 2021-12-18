@@ -38,7 +38,7 @@ function ColourPalette() {
 		for (var i = 0; i < this.colours.length; i++) {
 			var colourID = this.colours[i] + "Swatch";
 
-			//using p5.dom add the swatch to the palette and set its background colour
+			//using JQuery add the swatch to the palette and set its background colour
 			//to be the colour value.
 			var colourSwatch = createDiv()
 			colourSwatch.class('colourSwatches');
