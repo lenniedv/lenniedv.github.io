@@ -41,13 +41,6 @@ body {
     max-width: 50px;
 }
 
-.colourPalette {
-    grid-area: colourP;
-    display: flex;
-    flex-direction: grid;
-    flex-flow: wrap;
-}
-
 .options {
     grid-area: options;
     padding: 15px;
@@ -84,11 +77,10 @@ body {
     background-color: #fff;
     color: #fff;
     font-size: 150%;
-    height: 100px;
+    height: 200px;
 }
 
 .header {
-    height: 300px;
     background-color: #000000;
 }
 
@@ -97,5 +89,15 @@ body {
     margin-left: 5px;
     margin-top: 5px;
     margin-bottom: 5px;
-    height: 300px;
+    height: 500px;
+}
+
+#saveImageButton {
+    width: 20px;
+    height: 20px;
+}
+
+#clearButton {
+    width: 20px;
+    height: 20px;
 }

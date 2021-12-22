@@ -4,7 +4,7 @@
 function LineToTool() {
     this.icon = 'assets/lineTo.jpg'
     this.name = 'LineTo'
-    this.description = 'Line to'
+    this.description = 'Draw a line from one point to another'
 
     var startMouseX = -1
     var startMouseY = -1
@@ -12,7 +12,9 @@ function LineToTool() {
 
     //draws the line to the screen
     this.draw = function() {
-        //only draw when mouse is clicked
+        stroke(colourP.selectedColour())
+        strokeWeight(1)
+            //only draw when mouse is clicked
         if (mouseIsPressed) {
             //if it's the start of drawing a new line
             if (startMouseX == -1) {

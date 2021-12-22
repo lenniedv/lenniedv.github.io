@@ -2,7 +2,7 @@ function FreehandTool() {
     //set an icon and a name for the object
     this.icon = 'assets/freehand.jpg'
     this.name = 'freehand'
-    this.description = 'Free hand drawing'
+    this.description = 'Draw with freehand pencil'
 
     //to smoothly draw we'll draw a line from the previous mouse location
     //to the current mouse location. The following values store
@@ -12,7 +12,10 @@ function FreehandTool() {
     var previousMouseY = -1
 
     this.draw = function() {
-        //if the mouse is pressed
+        fill(colourP.selectedColour())
+        stroke(colourP.selectedColour())
+        strokeWeight(1)
+            //if the mouse is pressed
         if (mouseIsPressed) {
             //check if they previousX and Y are -1. set them to the current
             //mouse X and Y if they are.

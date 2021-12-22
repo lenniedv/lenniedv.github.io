@@ -24,6 +24,7 @@ function setup() {
     toolbox.addTool(new mirrorDrawTool())
     toolbox.addTool(new SprayCanTool())
     toolbox.addTool(new ShapeTool())
+    toolbox.addTool(new StampTool())
     toolbox.addTool(new MovieTool())
     background(255)
 }

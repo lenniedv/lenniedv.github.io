@@ -22,7 +22,8 @@ function mirrorDrawTool() {
     var previousOppositeMouseY = -1
 
     this.draw = function() {
-        //display the last save state of pixels
+        stroke(colourP.selectedColour())
+            //display the last save state of pixels
         updatePixels()
 
         //do the drawing if the mouse is pressed

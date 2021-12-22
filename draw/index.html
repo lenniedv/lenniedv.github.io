@@ -20,6 +20,7 @@
     <script src="tools/mirrorDrawTool.js"></script>
     <script src="tools/sprayCanTool.js"></script>
     <script src="tools/shapeTool.js"></script>
+    <script src="tools/stampTool.js"></script>
     <script src="tools/movieTool.js"></script>
 
     <link rel="stylesheet" type="text/css" href="style.css" />
@@ -30,14 +31,14 @@
         <div class="box header">
             <div class="title">
                 Snappy Art Pad
-                <button id="clearButton">Clear</button>
-                <button id="saveImageButton">Save Image</button>
+                <image id="clearButton" src="assets/clear.png" title="Clear"></image>
+                <image id="saveImageButton" src="assets/save_picture.png" title="Save picture as an image to your computer">
+                </image>
             </div>
         </div>
         <div class="sidebar" id="sidebar"></div>
         <div id="content"></div>
-        <div class="box colourPalette"></div>
-        <div class="box options"></div>
+        <div class="statusBar"></div>
     </div>
 </body>
 

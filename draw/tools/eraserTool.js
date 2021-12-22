@@ -1,37 +1,26 @@
 function EraserTool() {
     this.icon = 'assets/eraser.jpg'
-    this.name = 'Eraser Tool' // TODO get a better name
-    this.description = 'Eraser'
+    this.name = 'Eraser Tool'
+    this.description = 'Erase mistakes'
 
-    var startMouseX = -1
-    var startMouseY = -1
-    var drawing = false
+    var previousMouseX = -1
+    var previousMouseY = -1
 
-    //draws the line to the screen
     this.draw = function() {
-        //only draw when mouse is clicked
+        stroke(color('white'))
+        strokeWeight(10)
         if (mouseIsPressed) {
-            //if it's the start of drawing a new line
-            if (startMouseX == -1) {
-                startMouseX = mouseX
-                startMouseY = mouseY
-                drawing = true
-                    //save the current pixel Array
-                loadPixels()
+            if (previousMouseX == -1) {
+                previousMouseX = mouseX
+                previousMouseY = mouseY
             } else {
-                //update the screen with the saved pixels to hide any previous
-                //line between mouse pressed and released
-                updatePixels()
-                    //draw the line
-                line(startMouseX, startMouseY, mouseX, mouseY)
+                line(previousMouseX, previousMouseY, mouseX, mouseY)
+                previousMouseX = mouseX
+                previousMouseY = mouseY
             }
-        } else if (drawing) {
-            //save the pixels with the most recent line and reset the
-            //drawing bool and start locations
-            loadPixels()
-            drawing = false
-            startMouseX = -1
-            startMouseY = -1
+        } else {
+            previousMouseX = -1
+            previousMouseY = -1
         }
     }
 }
