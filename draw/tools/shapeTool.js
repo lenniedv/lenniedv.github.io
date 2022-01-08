@@ -6,4 +6,8 @@ function ShapeTool() {
     this.draw = function() {
         stroke(colourP.selectedColour())
     }
+
+    this.populateOptions = function() {
+        colourP.createPallet()
+    }
 }

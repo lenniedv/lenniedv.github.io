@@ -1,7 +1,7 @@
 function EraserTool() {
     this.icon = 'assets/eraser.jpg'
     this.name = 'Eraser Tool'
-    this.description = 'Erase mistakes'
+    this.description = 'The Eraser'
 
     var previousMouseX = -1
     var previousMouseY = -1
@@ -22,5 +22,9 @@ function EraserTool() {
             previousMouseX = -1
             previousMouseY = -1
         }
+    }
+
+    this.populateOptions = function() {
+        colourP.removePallet()
     }
 }

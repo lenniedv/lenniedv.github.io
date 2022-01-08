@@ -9,11 +9,12 @@ function LineToTool() {
     var startMouseX = -1
     var startMouseY = -1
     var drawing = false
+    var slider = null
 
     //draws the line to the screen
     this.draw = function() {
         stroke(colourP.selectedColour())
-        strokeWeight(1)
+        strokeWeight(slider.value())
             //only draw when mouse is clicked
         if (mouseIsPressed) {
             //if it's the start of drawing a new line
@@ -38,5 +39,16 @@ function LineToTool() {
             startMouseX = -1
             startMouseY = -1
         }
+    }
+
+    this.unselectTool = function() {
+        select('.options').html('')
+    }
+
+    this.populateOptions = function() {
+        colourP.createPallet()
+        select('.options').html("<div id='options'>Line Stroke Weight: </div>")
+        slider = createSlider(1, 10, 1, 1)
+        slider.parent(select('#options'))
     }
 }

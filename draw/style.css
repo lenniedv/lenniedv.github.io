@@ -84,14 +84,6 @@ body {
     background-color: #000000;
 }
 
-.title {
-    font-family: 'Caveat-Title', cursive;
-    margin-left: 5px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    height: 500px;
-}
-
 #saveImageButton {
     width: 20px;
     height: 20px;
@@ -100,4 +92,19 @@ body {
 #clearButton {
     width: 20px;
     height: 20px;
+}
+
+.statusBar {
+    background-color: #000000;
+    width: 300px;
+}
+
+.options {
+    background-color: #000000;
+    color: white;
+}
+
+.picker {
+    margin-top: 20px;
+    color: white;
 }

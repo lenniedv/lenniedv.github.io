@@ -4,4 +4,8 @@ function MovieTool() {
     this.description = 'Combined images to create a GIF animation (IN PROGRESS)'
 
     this.draw = function() {}
+
+    this.populateOptions = function() {
+        colourP.createPallet()
+    }
 }
