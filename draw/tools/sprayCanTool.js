@@ -23,6 +23,7 @@ function SprayCanTool() {
 
     this.populateOptions = function() {
         colourP.createPallet()
+        select('#undoButton').hide()
         select('.options').html("<div id='options'>Spray Stroke Weight: </div>")
         slider = createSlider(1, 10, 1, 1)
         slider.parent(select('#options'))

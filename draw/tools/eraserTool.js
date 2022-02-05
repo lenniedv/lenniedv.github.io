@@ -26,5 +26,6 @@ function EraserTool() {
 
     this.populateOptions = function() {
         colourP.removePallet()
+        select('#undoButton').hide()
     }
 }

@@ -7,31 +7,31 @@ function StampTool() {
     var imgData = null
     var startSlider = null
 
-    this.draw = function() {
-        if (mouseIsPressed) {
-            if (imgData) {
-                loadImage(
-                    imgData,
-                    img => {
-                        const startSize = startSlider.value()
-                        const startX = mouseX - startSize / 2
-                        const startY = mouseY - startSize / 2
-                        image(img, startX, startY, startSize, startSize)
-                    },
-                    error => {
-                        alert('Unable to load image: ' + error)
-                    }
-                )
-            }
+    this.mousePressed = function() {
+        if (imgData) {
+            loadImage(
+                imgData,
+                img => {
+                    const startSize = startSlider.value()
+                    const startX = mouseX - startSize / 2
+                    const startY = mouseY - startSize / 2
+                    image(img, startX, startY, startSize, startSize)
+                },
+                error => {
+                    alert('Unable to load image: ' + error)
+                }
+            )
         }
     }
 
     this.unselectTool = function() {
         select('.options').html('')
+        select('#undoButton').hide()
     }
 
     this.populateOptions = function() {
         colourP.removePallet()
+
         select('.options').html(
             "<div id='slider'>Image Size: </div><br/><button id='resetButton'>Reset</button>"
         )

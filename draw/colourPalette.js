@@ -1,31 +1,56 @@
 function ColourPalette() {
-    this.picker = createColorPicker(color('black'))
+    this.strokeColorPicker = createColorPicker(color('black'))
+    this.fillColorPicker = createColorPicker(color('white'))
 
     this.selectedColour = function() {
-        return this.picker.color()
+        return this.strokeColorPicker ? this.strokeColorPicker.color() : color('black')
+    }
+
+    this.fillColour = function() {
+        return this.fillColorPicker ? this.fillColorPicker.color() : color('white')
     }
 
     this.createPallet = function() {
-        if (this.picker == null) {
-            select('#picker').html("<div class='picker'>Color Picker: </div>")
-            this.picker = createColorPicker(color('black'))
+        this.removePallet()
+        if (this.strokeColorPicker == null) {
+            select('#picker').html("<div class='picker'>Color: </div>")
+
+            this.strokeColorPicker = createColorPicker(color('black'))
+            this.strokeColorPicker.parent(select('.picker'))
+
             fill(color('black'))
             stroke(color('black'))
-            this.picker.parent(select('.picker'))
+        }
+    }
+
+    this.createStrokeAndFillPallet = function() {
+        this.removePallet()
+        if (this.strokeColorPicker == null) {
+            select('#picker').html(
+                "<div class='picker' id='picker_1'>Stroke Color: </div>" +
+                "<div class='picker' id='picker_2'>Fill Color: </div>"
+            )
+
+            this.strokeColorPicker = createColorPicker(color('black'))
+            this.strokeColorPicker.parent(select('#picker_1'))
+
+            this.fillColorPicker = createColorPicker(color('black'))
+            this.fillColorPicker.parent(select('#picker_2'))
+
+            fill(color('black'))
+            stroke(color('black'))
         }
     }
 
     this.removePallet = function() {
-        if (this.picker != null) {
-            this.picker.remove()
-            select('#picker').html('')
-            this.picker = null
+        select('#picker').html('')
+        if (this.strokeColorPicker != null) {
+            this.strokeColorPicker.remove()
+            this.strokeColorPicker = null
+        }
+        if (this.fillColorPicker != null) {
+            this.fillColorPicker.remove()
+            this.fillColorPicker = null
         }
     }
-
-    this.setup = function() {
-        this.createPallet()
-    }
-
-    this.setup()
 }

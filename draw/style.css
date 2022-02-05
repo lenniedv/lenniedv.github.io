@@ -84,12 +84,7 @@ body {
     background-color: #000000;
 }
 
-#saveImageButton {
-    width: 20px;
-    height: 20px;
-}
-
-#clearButton {
+.actionButton {
     width: 20px;
     height: 20px;
 }

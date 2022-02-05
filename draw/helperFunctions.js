@@ -1,7 +1,5 @@
 function HelperFunctions() {
-    //Jquery click events. Notice that there is no this. at the
-    //start we don't need to do that here because the event will
-    //be added to the button and doesn't 'belong' to the object
+    var previousState = null
 
     //event handler for the clear button event. Clears the screen
     select('#clearButton').mouseClicked(function() {
@@ -16,4 +14,27 @@ function HelperFunctions() {
     select('#saveImageButton').mouseClicked(function() {
         saveCanvas('myPicture', 'jpg')
     })
+
+    select('#undoButton').mouseClicked(function() {
+        if (previousState) {
+            background(255)
+            image(previousState, 0, 0, width, height)
+            select('#undoButton').hide()
+            previousState = null
+        }
+    })
+
+    this.mousePressedOnCanvas = function(canvas) {
+        return (
+            mouseX > canvas.elt.offsetLeft &&
+            mouseX < canvas.elt.offsetLeft + canvas.width &&
+            mouseY > canvas.elt.offsetTop &&
+            mouseY < canvas.elt.offsetTop + canvas.height - 200
+        )
+    }
+
+    this.saveState = function() {
+        previousState = get()
+        select('#undoButton').show()
+    }
 }
