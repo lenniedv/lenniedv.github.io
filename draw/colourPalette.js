@@ -2,28 +2,38 @@ function ColourPalette() {
     this.strokeColorPicker = createColorPicker(color('black'))
     this.fillColorPicker = createColorPicker(color('white'))
 
-    this.selectedColour = function() {
-        return this.strokeColorPicker ? this.strokeColorPicker.color() : color('black')
+    var rememberStrokeColor
+    var rememberFillColor
+
+    this.selectedColour = function () {
+        return this.strokeColorPicker ? this.strokeColorPicker.color() : rememberStrokeColor
     }
 
-    this.fillColour = function() {
-        return this.fillColorPicker ? this.fillColorPicker.color() : color('white')
+    this.fillColour = function () {
+        return this.fillColorPicker ? this.fillColorPicker.color() : rememberFillColor
     }
 
-    this.createPallet = function() {
+    this.createPallet = function () {
+
+        rememberStrokeColor = rememberStrokeColor ? rememberStrokeColor : color("black")
+        rememberFillColor = rememberFillColor ? rememberFillColor : color("black")
+
         this.removePallet()
         if (this.strokeColorPicker == null) {
             select('#picker').html("<div class='picker'>Color: </div>")
 
-            this.strokeColorPicker = createColorPicker(color('black'))
+            this.strokeColorPicker = createColorPicker(rememberStrokeColor)
             this.strokeColorPicker.parent(select('.picker'))
 
-            fill(color('black'))
-            stroke(color('black'))
+            fill(rememberFillColor)
+            stroke(rememberStrokeColor)
         }
     }
 
-    this.createStrokeAndFillPallet = function() {
+    this.createStrokeAndFillPallet = function () {
+        rememberStrokeColor = rememberStrokeColor ? rememberStrokeColor : color("black")
+        rememberFillColor = rememberFillColor ? rememberFillColor : color("black")
+
         this.removePallet()
         if (this.strokeColorPicker == null) {
             select('#picker').html(
@@ -31,24 +41,26 @@ function ColourPalette() {
                 "<div class='picker' id='picker_2'>Fill Color: </div>"
             )
 
-            this.strokeColorPicker = createColorPicker(color('black'))
+            this.strokeColorPicker = createColorPicker(rememberStrokeColor)
             this.strokeColorPicker.parent(select('#picker_1'))
 
-            this.fillColorPicker = createColorPicker(color('black'))
+            this.fillColorPicker = createColorPicker(rememberFillColor)
             this.fillColorPicker.parent(select('#picker_2'))
 
-            fill(color('black'))
-            stroke(color('black'))
+            fill(rememberFillColor)
+            stroke(rememberStrokeColor)
         }
     }
 
-    this.removePallet = function() {
+    this.removePallet = function () {
         select('#picker').html('')
         if (this.strokeColorPicker != null) {
+            rememberStrokeColor = this.strokeColorPicker.color()
             this.strokeColorPicker.remove()
             this.strokeColorPicker = null
         }
         if (this.fillColorPicker != null) {
+            rememberFillColor = this.fillColorPicker.color()
             this.fillColorPicker.remove()
             this.fillColorPicker = null
         }

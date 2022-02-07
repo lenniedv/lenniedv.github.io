@@ -7,7 +7,7 @@ function StampTool() {
     var imgData = null
     var startSlider = null
 
-    this.mousePressed = function() {
+    this.mousePressed = function () {
         if (imgData) {
             loadImage(
                 imgData,
@@ -24,12 +24,12 @@ function StampTool() {
         }
     }
 
-    this.unselectTool = function() {
+    this.unselectTool = function () {
         select('.options').html('')
         select('#undoButton').hide()
     }
 
-    this.populateOptions = function() {
+    this.populateOptions = function () {
         colourP.removePallet()
 
         select('.options').html(
@@ -47,9 +47,10 @@ function StampTool() {
         fileChooser.parent(select('.picker'))
 
         startSlider = createSlider(5, 100, 50, 5)
+        startSlider.color = "white";
         startSlider.parent('#slider')
 
-        select('#resetButton').mouseClicked(function() {
+        select('#resetButton').mouseClicked(function () {
             imgData = null
         })
     }

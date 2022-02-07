@@ -7,7 +7,7 @@ function SprayCanTool() {
     var spread = 10
     var slider
 
-    this.draw = function() {
+    this.draw = function () {
         stroke(colourP.selectedColour())
         strokeWeight(slider.value())
         if (mouseIsPressed) {
@@ -17,14 +17,14 @@ function SprayCanTool() {
         }
     }
 
-    this.unselectTool = function() {
+    this.unselectTool = function () {
         select('.options').html('')
     }
 
-    this.populateOptions = function() {
+    this.populateOptions = function () {
         colourP.createPallet()
         select('#undoButton').hide()
-        select('.options').html("<div id='options'>Spray Stroke Weight: </div>")
+        select('.options').html("<div id='options'>Spray Stroke Width: </div>")
         slider = createSlider(1, 10, 1, 1)
         slider.parent(select('#options'))
     }

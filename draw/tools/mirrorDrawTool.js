@@ -3,9 +3,11 @@ function mirrorDrawTool() {
     this.icon = 'assets/mirrorDraw.jpg'
     this.description = 'Mirror drawing'
 
+    var strokeWidthSlider
+
     //which axis is being mirrored (x or y) x is default
     this.axis = 'x'
-        //line of symmetry is halfway across the screen
+    //line of symmetry is halfway across the screen
     this.lineOfSymmetry = width / 2
 
     //this changes in the jquery click handler. So storing it as
@@ -21,9 +23,9 @@ function mirrorDrawTool() {
     var previousOppositeMouseX = -1
     var previousOppositeMouseY = -1
 
-    this.draw = function() {
+    this.draw = function () {
         stroke(colourP.selectedColour())
-            //display the last save state of pixels
+        //display the last save state of pixels
         updatePixels()
 
         //do the drawing if the mouse is pressed
@@ -40,6 +42,7 @@ function mirrorDrawTool() {
             //if there are values in the previous locations
             //draw a line between them and the current positions
             else {
+                strokeWeight(strokeWidthSlider.value())
                 line(previousMouseX, previousMouseY, mouseX, mouseY)
                 previousMouseX = mouseX
                 previousMouseY = mouseY
@@ -71,7 +74,8 @@ function mirrorDrawTool() {
         push()
         strokeWeight(3)
         stroke('red')
-            //draw the line of symmetry
+
+        //draw the line of symmetry
         if (this.axis == 'x') {
             line(width / 2, 0, width / 2, height)
         } else {
@@ -87,7 +91,7 @@ function mirrorDrawTool() {
      *@param a [x,y]: the axis of the coordinate (y or y)
      *@return number: the opposite coordinate
      */
-    this.calculateOpposite = function(n, a) {
+    this.calculateOpposite = function (n, a) {
         //if the axis isn't the one being mirrored return the same
         //value
         if (a != this.axis) {
@@ -110,20 +114,25 @@ function mirrorDrawTool() {
 
     //when the tool is deselected update the pixels to just show the drawing and
     //hide the line of symmetry. Also clear options
-    this.unselectTool = function() {
+    this.unselectTool = function () {
         updatePixels()
-            //clear options
+        //clear options
         select('.options').html('')
     }
 
     //adds a button and click handler to the options area. When clicked
     //toggle the line of symmetry between horizonatl to vertical
-    this.populateOptions = function() {
+    this.populateOptions = function () {
         colourP.createPallet()
         select('#undoButton').hide()
-        select('.options').html("<button id='directionButton'>Make Horizontal</button>")
-            // 	//click handler
-        select('#directionButton').mouseClicked(function() {
+        select('.options').html("<button id='directionButton'>Make Horizontal</button>" +
+            "<div id='lineStrokeWidth'>Line Stroke Width: </div> <br/>")
+
+        strokeWidthSlider = createSlider(1, 10, 1, 1)
+        strokeWidthSlider.parent(select('#lineStrokeWidth'))
+
+        // 	//click handler
+        select('#directionButton').mouseClicked(function () {
             var button = select('#' + this.elt.id)
             if (self.axis == 'x') {
                 self.axis = 'y'

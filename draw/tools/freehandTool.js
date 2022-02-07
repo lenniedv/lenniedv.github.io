@@ -12,11 +12,11 @@ function FreehandTool() {
     var previousMouseY = -1
     var slider = null
 
-    this.draw = function() {
+    this.draw = function () {
         fill(colourP.selectedColour())
         stroke(colourP.selectedColour())
         strokeWeight(slider.value())
-            //if the mouse is pressed
+        //if the mouse is pressed
         if (mouseIsPressed) {
             //check if they previousX and Y are -1. set them to the current
             //mouse X and Y if they are.
@@ -41,14 +41,14 @@ function FreehandTool() {
         }
     }
 
-    this.unselectTool = function() {
+    this.unselectTool = function () {
         select('.options').html('')
     }
 
-    this.populateOptions = function() {
+    this.populateOptions = function () {
         colourP.createPallet()
         select('#undoButton').hide()
-        select('.options').html("<div id='options'>Line Stroke Weight: </div>")
+        select('.options').html("<div id='options'>Line Stroke Width: </div>")
         slider = createSlider(1, 10, 1, 1)
         slider.parent(select('#options'))
     }

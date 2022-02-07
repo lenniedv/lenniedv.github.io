@@ -3,19 +3,19 @@ function ShapeTool() {
     this.name = 'Shape Tool'
     this.description = 'Draw a 2D shape'
 
-    var strokeWeightSlider
+    var strokeWidthSlider
     var shapeOptions
     var inputWidth
     var inputHeight
     var trianglePoints
 
-    this.draw = function() {
+    this.draw = function () {
         stroke(colourP.selectedColour())
         fill(colourP.fillColour())
-        strokeWeight(strokeWeightSlider.value())
+        strokeWeight(strokeWidthSlider.value())
     }
 
-    this.mousePressed = function() {
+    this.mousePressed = function () {
         const width = parseInt(inputWidth.value())
         const height = parseInt(inputHeight.value())
         if (shapeOptions.value() == 'Circle') {
@@ -27,18 +27,18 @@ function ShapeTool() {
         }
     }
 
-    this.unselectTool = function() {
+    this.unselectTool = function () {
         trianglePoints = []
         select('.options').html('')
         select('#undoButton').hide()
     }
 
-    this.populateOptions = function() {
+    this.populateOptions = function () {
         trianglePoints = []
         colourP.createStrokeAndFillPallet()
         select('.options').html(
             "<div id='shapeOptions'>Shape: </div> <br/> " +
-            "<div id='lineStrokeWeight'>Line Stroke Weight: </div> <br/>" +
+            "<div id='lineStrokeWidth'>Line Stroke Width: </div> <br/>" +
             "<div id='inputWidth'>Width: </div> <br/> <div id='inputHeight'>Height: </div>"
         )
         shapeOptions = createSelect()
@@ -48,8 +48,8 @@ function ShapeTool() {
         shapeOptions.option('Triangle')
         shapeOptions.parent(select('#shapeOptions'))
 
-        strokeWeightSlider = createSlider(1, 10, 1, 1)
-        strokeWeightSlider.parent(select('#lineStrokeWeight'))
+        strokeWidthSlider = createSlider(1, 10, 1, 1)
+        strokeWidthSlider.parent(select('#lineStrokeWidth'))
 
         inputWidth = createInput(20)
         inputHeight = createInput(50)

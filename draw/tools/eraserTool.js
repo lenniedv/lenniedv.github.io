@@ -3,12 +3,13 @@ function EraserTool() {
     this.name = 'Eraser Tool'
     this.description = 'The Eraser'
 
+    var strokeWidthSlider
     var previousMouseX = -1
     var previousMouseY = -1
 
-    this.draw = function() {
+    this.draw = function () {
         stroke(color('white'))
-        strokeWeight(10)
+        strokeWeight(strokeWidthSlider.value())
         if (mouseIsPressed) {
             if (previousMouseX == -1) {
                 previousMouseX = mouseX
@@ -24,8 +25,13 @@ function EraserTool() {
         }
     }
 
-    this.populateOptions = function() {
+    this.populateOptions = function () {
         colourP.removePallet()
         select('#undoButton').hide()
+
+        select('.options').html("<div id='lineStrokeWidth'>Width: </div> <br/>")
+
+        strokeWidthSlider = createSlider(1, 50, 1, 1)
+        strokeWidthSlider.parent(select('#lineStrokeWidth'))
     }
 }
