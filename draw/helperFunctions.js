@@ -29,13 +29,12 @@ function HelperFunctions() {
             mouseX > canvas.elt.offsetLeft &&
             mouseX < canvas.elt.offsetLeft + canvas.width &&
             mouseY > canvas.elt.offsetTop &&
-            mouseY < canvas.elt.offsetTop + canvas.height - 200
+            mouseY < canvas.elt.offsetTop + canvas.height - 20
         )
     }
 
     this.saveState = function () {
         previousState = get()
         select('#undoButton').show()
-        select("#undoButton").style("")
     }
 }

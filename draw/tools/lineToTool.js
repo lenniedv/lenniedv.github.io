@@ -12,9 +12,11 @@ function LineToTool() {
     var slider = null
 
     //draws the line to the screen
-    this.draw = function () {
+    this.draw = function() {
         stroke(colourP.selectedColour())
         strokeWeight(slider.value())
+        select('#lineStrokeWidthValue').html(slider.value())
+
         //only draw when mouse is clicked
         if (mouseIsPressed) {
             //if it's the start of drawing a new line
@@ -22,13 +24,13 @@ function LineToTool() {
                 startMouseX = mouseX
                 startMouseY = mouseY
                 drawing = true
-                //save the current pixel Array
+                    //save the current pixel Array
                 loadPixels()
             } else {
                 //update the screen with the saved pixels to hide any previous
                 //line between mouse pressed and released
                 updatePixels()
-                //draw the line
+                    //draw the line
                 line(startMouseX, startMouseY, mouseX, mouseY)
             }
         } else if (drawing) {
@@ -41,15 +43,17 @@ function LineToTool() {
         }
     }
 
-    this.unselectTool = function () {
+    this.unselectTool = function() {
         select('.options').html('')
     }
 
-    this.populateOptions = function () {
+    this.populateOptions = function() {
         colourP.createPallet()
         select('#undoButton').hide()
-        select('.options').html("<div id='options'>Line Stroke Width: </div>")
-        slider = createSlider(1, 10, 1, 1)
-        slider.parent(select('#options'))
+        select('.options').html(
+            "<div>Line Stoke Width: <input id='lineStrokeWidth' type='range' min='1' max='10' step='1'><output id='lineStrokeWidthValue'></output></div>"
+        )
+
+        slider = select('#lineStrokeWidth')
     }
 }
