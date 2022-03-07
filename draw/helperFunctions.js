@@ -24,18 +24,25 @@ function HelperFunctions() {
         }
     })
 
+    this.clearCanvas = function () {
+        background(255, 255, 255)
+    }
+
+    this.clearOptions = function () {
+        select('.options').html('')
+    }
+
     this.mousePressedOnCanvas = function (canvas) {
         return (
             mouseX > canvas.elt.offsetLeft &&
             mouseX < canvas.elt.offsetLeft + canvas.width &&
             mouseY > canvas.elt.offsetTop &&
-            mouseY < canvas.elt.offsetTop + canvas.height - 200
+            mouseY < canvas.elt.offsetTop + canvas.height - 20
         )
     }
 
     this.saveState = function () {
         previousState = get()
         select('#undoButton').show()
-        select("#undoButton").style("")
     }
 }

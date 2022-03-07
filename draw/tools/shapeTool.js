@@ -10,9 +10,10 @@ function ShapeTool() {
     var trianglePoints
 
     this.draw = function () {
-        stroke(colourP.selectedColour())
-        fill(colourP.fillColour())
+        stroke(_colourP.selectedColour())
+        fill(_colourP.fillColour())
         strokeWeight(strokeWidthSlider.value())
+        select('#slideValue').html(strokeWidthSlider.value())
     }
 
     this.mousePressed = function () {
@@ -29,16 +30,16 @@ function ShapeTool() {
 
     this.unselectTool = function () {
         trianglePoints = []
-        select('.options').html('')
+        _helpers.clearOptions();
         select('#undoButton').hide()
     }
 
     this.populateOptions = function () {
         trianglePoints = []
-        colourP.createStrokeAndFillPallet()
+        _colourP.createStrokeAndFillPallet()
         select('.options').html(
             "<div id='shapeOptions'>Shape: </div> <br/> " +
-            "<div id='lineStrokeWidth'>Line Stroke Width: </div> <br/>" +
+            "<div>Line Stroke Width: <input id='lineStrokeWidth' type='range' min='1' max='10' step='1'><output id='slideValue'>0</output></div> <br/>" +
             "<div id='inputWidth'>Width: </div> <br/> <div id='inputHeight'>Height: </div>"
         )
         shapeOptions = createSelect()
@@ -48,8 +49,7 @@ function ShapeTool() {
         shapeOptions.option('Triangle')
         shapeOptions.parent(select('#shapeOptions'))
 
-        strokeWidthSlider = createSlider(1, 10, 1, 1)
-        strokeWidthSlider.parent(select('#lineStrokeWidth'))
+        strokeWidthSlider = select('#lineStrokeWidth')
 
         inputWidth = createInput(20)
         inputHeight = createInput(50)

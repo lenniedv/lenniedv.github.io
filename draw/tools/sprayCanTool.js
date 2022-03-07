@@ -8,24 +8,27 @@ function SprayCanTool() {
     var slider
 
     this.draw = function () {
-        stroke(colourP.selectedColour())
+        stroke(_colourP.selectedColour())
         strokeWeight(slider.value())
         if (mouseIsPressed) {
             for (var i = 0; i < points; i++) {
                 point(random(mouseX - spread, mouseX + spread), random(mouseY - spread, mouseY + spread))
             }
         }
+        select('#slideValue').html(slider.value())
     }
 
     this.unselectTool = function () {
-        select('.options').html('')
+        _helpers.clearOptions();
     }
 
     this.populateOptions = function () {
-        colourP.createPallet()
+        _colourP.createPallet()
         select('#undoButton').hide()
-        select('.options').html("<div id='options'>Spray Stroke Width: </div>")
-        slider = createSlider(1, 10, 1, 1)
-        slider.parent(select('#options'))
+        select('.options').html(
+            "<div>Spray Stroke Width: <input id='lineStrokeWidth' type='range' min='1' max='10' step='1'><output id='slideValue'>0</output></div>"
+        )
+
+        slider = select('#lineStrokeWidth')
     }
 }

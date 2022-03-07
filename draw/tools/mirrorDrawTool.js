@@ -3,7 +3,7 @@ function mirrorDrawTool() {
     this.icon = 'assets/mirrorDraw.jpg'
     this.description = 'Mirror drawing'
 
-    var strokeWidthSlider
+    var slider
 
     //which axis is being mirrored (x or y) x is default
     this.axis = 'x'
@@ -24,7 +24,9 @@ function mirrorDrawTool() {
     var previousOppositeMouseY = -1
 
     this.draw = function () {
-        stroke(colourP.selectedColour())
+        stroke(_colourP.selectedColour())
+        select('#lineStrokeWidthValue').html(slider.value())
+
         //display the last save state of pixels
         updatePixels()
 
@@ -42,7 +44,7 @@ function mirrorDrawTool() {
             //if there are values in the previous locations
             //draw a line between them and the current positions
             else {
-                strokeWeight(strokeWidthSlider.value())
+                strokeWeight(slider.value())
                 line(previousMouseX, previousMouseY, mouseX, mouseY)
                 previousMouseX = mouseX
                 previousMouseY = mouseY
@@ -117,19 +119,20 @@ function mirrorDrawTool() {
     this.unselectTool = function () {
         updatePixels()
         //clear options
-        select('.options').html('')
+        _helpers.clearOptions();
     }
 
     //adds a button and click handler to the options area. When clicked
     //toggle the line of symmetry between horizonatl to vertical
     this.populateOptions = function () {
-        colourP.createPallet()
+        _colourP.createPallet()
         select('#undoButton').hide()
-        select('.options').html("<button id='directionButton'>Make Horizontal</button>" +
-            "<div id='lineStrokeWidth'>Line Stroke Width: </div> <br/>")
+        select('.options').html(
+            "<button id='directionButton'>Make Horizontal</button>" +
+            "<div>Line Stoke Width: <input id='lineStrokeWidth' type='range' min='1' max='10' step='1'><output id='lineStrokeWidthValue'></output></div>"
+        )
 
-        strokeWidthSlider = createSlider(1, 10, 1, 1)
-        strokeWidthSlider.parent(select('#lineStrokeWidth'))
+        slider = select('#lineStrokeWidth')
 
         // 	//click handler
         select('#directionButton').mouseClicked(function () {

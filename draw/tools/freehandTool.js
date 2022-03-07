@@ -13,8 +13,8 @@ function FreehandTool() {
     var slider = null
 
     this.draw = function () {
-        fill(colourP.selectedColour())
-        stroke(colourP.selectedColour())
+        fill(_colourP.selectedColour())
+        stroke(_colourP.selectedColour())
         strokeWeight(slider.value())
         //if the mouse is pressed
         if (mouseIsPressed) {
@@ -39,17 +39,21 @@ function FreehandTool() {
             previousMouseX = -1
             previousMouseY = -1
         }
+
+        select('#slideValue').html(slider.value())
     }
 
     this.unselectTool = function () {
-        select('.options').html('')
+        _helpers.clearOptions();
     }
 
     this.populateOptions = function () {
-        colourP.createPallet()
+        _colourP.createPallet()
         select('#undoButton').hide()
-        select('.options').html("<div id='options'>Line Stroke Width: </div>")
-        slider = createSlider(1, 10, 1, 1)
-        slider.parent(select('#options'))
+        select('.options').html(
+            "<div>Line Stroke Width: <input id='lineStrokeWidth' type='range' min='1' max='10' step='1'><output id='slideValue'>0</output></div>"
+        )
+
+        slider = select('#lineStrokeWidth')
     }
 }

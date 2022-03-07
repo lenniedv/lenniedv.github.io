@@ -24,21 +24,26 @@ function StampTool() {
         }
     }
 
+    this.draw = function () {
+        select('#slideValue').html(startSlider.value())
+    }
+
     this.unselectTool = function () {
-        select('.options').html('')
+        _helpers.clearOptions();
         select('#undoButton').hide()
     }
 
     this.populateOptions = function () {
-        colourP.removePallet()
+        _colourP.removePallet()
 
         select('.options').html(
-            "<div id='slider'>Image Size: </div><br/><button id='resetButton'>Reset</button>"
+            "<div>Image Size: <input id='slider' type='range' min='5' max='100' step='5'><output id='slideValue'>0</output></div></br> <button id='resetButton'>Reset</button>"
         )
         fileChooser = createFileInput(file => {
             if (file.type === 'image') {
                 imgData = file.data
             } else {
+                alert('Please select an image')
                 imgData = null
             }
         })
@@ -46,11 +51,10 @@ function StampTool() {
         select('#picker').html("<div class='picker'></div>")
         fileChooser.parent(select('.picker'))
 
-        startSlider = createSlider(5, 100, 50, 5)
-        startSlider.color = "white";
-        startSlider.parent('#slider')
+        startSlider = select('#slider')
 
         select('#resetButton').mouseClicked(function () {
+            this.populateOptions()
             imgData = null
         })
     }

@@ -13,8 +13,10 @@ function LineToTool() {
 
     //draws the line to the screen
     this.draw = function () {
-        stroke(colourP.selectedColour())
+        stroke(_colourP.selectedColour())
         strokeWeight(slider.value())
+        select('#lineStrokeWidthValue').html(slider.value())
+
         //only draw when mouse is clicked
         if (mouseIsPressed) {
             //if it's the start of drawing a new line
@@ -42,14 +44,16 @@ function LineToTool() {
     }
 
     this.unselectTool = function () {
-        select('.options').html('')
+        _helpers.clearOptions();
     }
 
     this.populateOptions = function () {
-        colourP.createPallet()
+        _colourP.createPallet()
         select('#undoButton').hide()
-        select('.options').html("<div id='options'>Line Stroke Width: </div>")
-        slider = createSlider(1, 10, 1, 1)
-        slider.parent(select('#options'))
+        select('.options').html(
+            "<div>Line Stoke Width: <input id='lineStrokeWidth' type='range' min='1' max='10' step='1'><output id='lineStrokeWidthValue'></output></div>"
+        )
+
+        slider = select('#lineStrokeWidth')
     }
 }
