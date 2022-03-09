@@ -1,6 +1,6 @@
 function MovieTool() {
     this.icon = 'assets/movie.jpg'
-    this.name = 'Gif Me'
+    this.name = 'GIF Me'
     this.description = 'Create a GIF animation'
 
     const State = {
@@ -14,6 +14,10 @@ function MovieTool() {
     var _frameRateSlider
     var _currentState = State.INIT
     var _demoMode = false
+    var _recordButton
+    var _repeatAnimation
+    var _imageWidth
+    var _imageHeight
 
     this.draw = function () {
         noFill()
@@ -29,35 +33,47 @@ function MovieTool() {
         _colourP.removePallet()
         _helpers.clearCanvas()
         _helpers.clearOptions();
+        _helpers.clearPicker();
         _canvas.drop(gotFile);
         setupOptions()
         setupFrames()
-
-        // Testing
-        //dummyImages();
     }
 
     this.unselectTool = function () {
         _helpers.clearOptions();
-
+        _helpers.clearCanvas()
+        _helpers.clearPicker();
     }
 
     function setupOptions() {
+
+        select("#picker").html("<image id='playButton' class='playButton' src='assets/play.png' title='Play'></image>" +
+            "<image id='recordButton' class='recordButton' src='assets/record.png' title='Start Recording'></image>");
+
         select('.options').html(
             "<div>Frame Rate: <input id='slider' type='range' min='1' max='10' step='1' value='5'><output id='slideValue'>0</output></br></br>" +
-            "<image id='playButton' class='playButton' src='assets/play.png' title='Play'></image></br></br>" +
+            "Repeat: <input id='repeat' type='checkbox' checked='true'></br></br > " +
             "<button id='demoButton'>Demo</button>" +
             "</div>"
         )
 
+        select('#playButton').mouseClicked(function () {
+            setState();
+            startAnimation()
+        })
+
+        select('#recordButton').mouseClicked(function () {
+            recordAnimation()
+        })
+
+        _recordButton = select("#recordButton")
+        _recordButton.hide()
+
+        _repeatAnimation = select("#repeat");
+
         _frameRateSlider = select('#slider')
         _frameRateSlider.input(startAnimation);
         select('#slideValue').html(_frameRateSlider.value())
-
-        select('#playButton').mouseClicked(function () {
-            _currentState = State.PLAY
-            startAnimation()
-        })
 
         select('#demoButton').mouseClicked(function () {
             if (_demoMode) {
@@ -72,6 +88,30 @@ function MovieTool() {
             }
             _demoMode = !_demoMode
         })
+    }
+
+    function setState() {
+        if (_currentState == State.INIT) {
+            if (_imageData.length > 0) {
+                _currentState = State.PLAY
+                _recordButton.show()
+                select("#playButton").attribute("src", "assets/stop.png")
+            }
+            else {
+                alert(""); // @TODO Need wording
+            }
+        }
+        else if (_currentState == State.PLAY) {
+            stopAnimation();
+        }
+    }
+
+    function stopAnimation() {
+        _currentState = State.INIT
+        _helpers.clearCanvas()
+        _recordButton.hide()
+        select("#playButton").attribute("src", "assets/play.png")
+        drawFrames()
     }
 
     function gotFile(file) {
@@ -125,6 +165,8 @@ function MovieTool() {
                     loadImage(
                         _imageData[_currentAnimationPosition],
                         img => {
+                            _imageWidth = img.width
+                            _imageHeight = img.height
                             image(img, 0, 0)
                         },
                         error => {
@@ -133,25 +175,33 @@ function MovieTool() {
                     )
                 }
                 else {
+                    _imageWidth = _imageData[_currentAnimationPosition].width
+                    _imageHeight = _imageData[_currentAnimationPosition].height
                     image(_imageData[_currentAnimationPosition], 0, 0)
                 }
                 _currentAnimationPosition++
             }
-        } else {
+        } else if (_repeatAnimation.checked()) {
             _currentAnimationPosition = 0
+        }
+        else {
+            stopAnimation()
         }
     }
 
     function recordAnimation() {
+        _recordButton.hide()
         createLoop(_canvas, {
             framesPerSecond: 2,
             duration: 3,
             gif: {
                 render: false,
                 open: false,
-                download: false,
+                download: true,
                 options: {
-                    repeat: -1
+                    repeat: _repeatAnimation.checked() ? 0 : -1,
+                    width: _imageWidth,
+                    height: _imageHeight,
                 }
             }
         })

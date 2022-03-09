@@ -11,6 +11,7 @@ function ImageRect(ref, x, y, width, height) {
         strokeWeight(2);
         stroke(51);
         noFill();
+        rect(x, y, width, height);
         if (imageData[this.ref]) {
             if ("string" == typeof imageData[this.ref]) {
                 loadImage(
@@ -26,9 +27,6 @@ function ImageRect(ref, x, y, width, height) {
             else {
                 image(imageData[this.ref], x, y, width, height);
             }
-        }
-        else {
-            rect(x, y, width, height);
         }
     }
 

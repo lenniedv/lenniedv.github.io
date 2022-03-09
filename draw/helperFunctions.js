@@ -32,6 +32,10 @@ function HelperFunctions() {
         select('.options').html('')
     }
 
+    this.clearPicker = function () {
+        select("#picker").html('');
+    }
+
     this.mousePressedOnCanvas = function (canvas) {
         return (
             mouseX > canvas.elt.offsetLeft &&

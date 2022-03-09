@@ -93,6 +93,15 @@ body {
 .playButton {
     width: 50px;
     height: 50px;
+    padding-left: 50px;
+    padding-top: 20px;
+}
+
+.recordButton {
+    width: 40px;
+    height: 40px;
+    padding-left: 50px;
+    padding-top: 20px;
 }
 
 .statusBar {
