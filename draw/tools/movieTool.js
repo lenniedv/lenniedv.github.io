@@ -92,13 +92,13 @@ function MovieTool() {
 
     function setState() {
         if (_currentState == State.INIT) {
-            if (_imageData.length > 0) {
+            if (_imageData.length >= 3) {
                 _currentState = State.PLAY
                 _recordButton.show()
                 select("#playButton").attribute("src", "assets/stop.png")
             }
             else {
-                alert(""); // @TODO Need wording
+                alert("Not enough pictures uploaded. A minimum of 3 pictures are required.");
             }
         }
         else if (_currentState == State.PLAY) {
