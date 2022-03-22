@@ -39,9 +39,7 @@ function draw() {
 
 function mousePressed() {
     if (_toolbox.selectedTool.hasOwnProperty('mousePressed')) {
-        if (_helpers.mousePressedOnCanvas(_canvas)) {
-            _helpers.saveState()
-            _toolbox.selectedTool.mousePressed()
-        }
+        _helpers.saveState()
+        _toolbox.selectedTool.mousePressed()
     }
 }

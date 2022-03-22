@@ -17,8 +17,9 @@ function ShapeTool() {
     }
 
     this.mousePressed = function () {
-        const width = parseInt(inputWidth.value())
-        const height = parseInt(inputHeight.value())
+        const width = ToInt("Width", inputWidth.value())
+        const height = ToInt("Height", inputHeight.value())
+        if (width == -1 || height == -1) return;
         if (shapeOptions.value() == 'Circle') {
             drawCircle(width)
         } else if (shapeOptions.value() == 'Rectangle') {
@@ -64,6 +65,21 @@ function ShapeTool() {
 
     function drawRectangle(width, height) {
         rect(mouseX, mouseY, width, height)
+    }
+
+    function ToInt(description, value) {
+        try {
+            const result = parseInt(value)
+            if (result < 0) {
+                alert(description + " must be numeric greater than zero")
+                return -1
+            }
+            return result
+        }
+        catch {
+            alert("Number must be numeric");
+            return -1
+        }
     }
 
     function drawTriangle() {

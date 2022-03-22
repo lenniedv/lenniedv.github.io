@@ -1,7 +1,7 @@
 function MovieTool() {
     this.icon = 'assets/movie.jpg'
-    this.name = 'GIF Me'
-    this.description = 'Create a GIF animation'
+    this.name = 'GIFy Tool'
+    this.description = 'Create your own GIF animation. Upload your motionless pictures in the blocks, set frame rate, and press play!'
 
     const State = {
         INIT: "Init",
