@@ -4,6 +4,7 @@ var _toolbox = null
 var _colourP = null
 var _helpers = null
 var _canvas = null
+var _rememberLineWidth = 0
 
 function setup() {
     //create a canvas to fill the content div from index.html

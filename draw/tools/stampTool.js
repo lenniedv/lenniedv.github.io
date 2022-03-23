@@ -26,6 +26,7 @@ function StampTool() {
 
     this.draw = function () {
         select('#slideValue').html(startSlider.value())
+        _rememberLineWidth = startSlider.value()
     }
 
     this.unselectTool = function () {
@@ -37,7 +38,7 @@ function StampTool() {
         _colourP.removePallet()
 
         select('.options').html(
-            "<div>Image Size: <input id='slider' type='range' min='5' max='100' step='5'><output id='slideValue'>0</output></div></br> <button id='resetButton'>Reset</button>"
+            "<div>Image Size: <input id='slider' type='range' min='5' max='10' step='5' value='" + _rememberLineWidth + "'><output id='slideValue'>0</output></div></br> <button id='resetButton'>Reset</button>"
         )
         fileChooser = createFileInput(file => {
             if (file.type === 'image') {

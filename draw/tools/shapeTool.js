@@ -13,6 +13,7 @@ function ShapeTool() {
         stroke(_colourP.selectedColour())
         fill(_colourP.fillColour())
         strokeWeight(strokeWidthSlider.value())
+        _rememberLineWidth = strokeWidthSlider.value()
         select('#slideValue').html(strokeWidthSlider.value())
     }
 
@@ -40,7 +41,7 @@ function ShapeTool() {
         _colourP.createStrokeAndFillPallet()
         select('.options').html(
             "<div id='shapeOptions'>Shape: </div> <br/> " +
-            "<div>Line Stroke Width: <input id='lineStrokeWidth' type='range' min='1' max='10' step='1'><output id='slideValue'>0</output></div> <br/>" +
+            "<div>Line Stroke Width: <input id='lineStrokeWidth' type='range' min='1' max='10' step='1' value='" + _rememberLineWidth + "'><output id='slideValue'>0</output></div> <br/>" +
             "<div id='inputWidth'>Width: </div> <br/> <div id='inputHeight'>Height: </div>"
         )
         shapeOptions = createSelect()

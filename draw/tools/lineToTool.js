@@ -14,6 +14,7 @@ function LineToTool() {
     //draws the line to the screen
     this.draw = function () {
         stroke(_colourP.selectedColour())
+        _rememberLineWidth = slider.value()
         strokeWeight(slider.value())
         select('#lineStrokeWidthValue').html(slider.value())
 
@@ -51,7 +52,7 @@ function LineToTool() {
         _colourP.createPallet()
         select('#undoButton').hide()
         select('.options').html(
-            "<div>Line Stoke Width: <input id='lineStrokeWidth' type='range' min='1' max='10' step='1'><output id='lineStrokeWidthValue'></output></div>"
+            "<div>Line Stoke Width: <input id='lineStrokeWidth' type='range' min='1' max='10' step='1' value='" + _rememberLineWidth + "'><output id='lineStrokeWidthValue'></output></div>"
         )
 
         slider = select('#lineStrokeWidth')

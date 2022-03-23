@@ -15,6 +15,7 @@ function FreehandTool() {
     this.draw = function () {
         fill(_colourP.selectedColour())
         stroke(_colourP.selectedColour())
+        _rememberLineWidth = slider.value()
         strokeWeight(slider.value())
         //if the mouse is pressed
         if (mouseIsPressed) {
@@ -51,7 +52,7 @@ function FreehandTool() {
         _colourP.createPallet()
         select('#undoButton').hide()
         select('.options').html(
-            "<div>Line Stroke Width: <input id='lineStrokeWidth' type='range' min='1' max='10' step='1'><output id='slideValue'>0</output></div>"
+            "<div>Line Stroke Width: <input id='lineStrokeWidth' type='range' min='1' max='10' step='1' value='" + _rememberLineWidth + "'><output id='slideValue'>0</output></div>"
         )
 
         slider = select('#lineStrokeWidth')

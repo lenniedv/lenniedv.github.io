@@ -25,6 +25,7 @@ function mirrorDrawTool() {
 
     this.draw = function () {
         stroke(_colourP.selectedColour())
+        _rememberLineWidth = slider.value()
         select('#lineStrokeWidthValue').html(slider.value())
 
         //display the last save state of pixels
@@ -129,7 +130,7 @@ function mirrorDrawTool() {
         select('#undoButton').hide()
         select('.options').html(
             "<button id='directionButton'>Make Horizontal</button>" +
-            "<div>Line Stoke Width: <input id='lineStrokeWidth' type='range' min='1' max='10' step='1'><output id='lineStrokeWidthValue'></output></div>"
+            "<div>Line Stoke Width: <input id='lineStrokeWidth' type='range' min='1' max='10' step='1' value='" + _rememberLineWidth + "'><output id='lineStrokeWidthValue'></output></div>"
         )
 
         slider = select('#lineStrokeWidth')
