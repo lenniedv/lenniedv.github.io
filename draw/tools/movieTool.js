@@ -3,6 +3,11 @@ function MovieTool() {
     this.name = 'GIFy Tool'
     this.description = 'Create your own GIF animation. Upload your motionless pictures in the blocks, set frame rate, and press play!'
 
+    // Set image size
+    const SIZE = {
+        width: 200, height: 200
+    }
+
     const State = {
         INIT: "Init",
         PLAY: "Play"
@@ -16,8 +21,6 @@ function MovieTool() {
     var _demoMode = false
     var _recordButton
     var _repeatAnimation
-    var _imageWidth
-    var _imageHeight
 
     this.draw = function () {
         noFill()
@@ -53,7 +56,8 @@ function MovieTool() {
         select('.options').html(
             "<div>Frame Rate: <input id='slider' type='range' min='1' max='10' step='1' value='5'><output id='slideValue'>0</output></br></br>" +
             "Repeat: <input id='repeat' type='checkbox' checked='true'></br></br > " +
-            "<button id='demoButton'>Demo</button>" +
+            "<button id='demoButton'>Demo</button> " +
+            "<button id='resetButton'>Reset</button>" +
             "</div>"
         )
 
@@ -78,9 +82,7 @@ function MovieTool() {
         select('#demoButton').mouseClicked(function () {
             if (_demoMode) {
                 select('#demoButton').html("Demo")
-                _helpers.clearCanvas()
-                _imageData = []
-                _currentState = State.INIT
+                clear();
             }
             else {
                 select('#demoButton').html("Clear")
@@ -88,6 +90,20 @@ function MovieTool() {
             }
             _demoMode = !_demoMode
         })
+
+        select('#resetButton').mouseClicked(function () {
+            if (confirm("Sure you wish to reset and start from new?")) {
+                demoMode = false;
+                stopAnimation();
+                clear();
+            }
+        })
+    }
+
+    function clear() {
+        _helpers.clearCanvas()
+        _imageData = []
+        _currentState = State.INIT
     }
 
     function setState() {
@@ -111,14 +127,21 @@ function MovieTool() {
         _helpers.clearCanvas()
         _recordButton.hide()
         select("#playButton").attribute("src", "assets/play.png")
-        drawFrames()
     }
 
     function gotFile(file) {
         if (file.type === 'image') {
             var imageRect = _images.find(x => x.IsInBorder(mouseX, mouseY));
             if (imageRect) {
-                _imageData[imageRect.ref] = file.data
+                loadImage(
+                    file.data,
+                    img => {
+                        _imageData[imageRect.ref] = img
+                    },
+                    error => {
+                        alert('Unable to load image: ' + error)
+                    }
+                )
             }
         } else {
             alert('Please select an image');
@@ -131,7 +154,7 @@ function MovieTool() {
         var index = 0;
         for (var y = 0; y < 2; y++) {
             for (var x = 0; x < 6; x++) {
-                var currentImage = new ImageRect(index, xPos, yPos, 200, 200);
+                var currentImage = new ImageRect(index, xPos, yPos, SIZE.width, SIZE.height);
                 _images.push(currentImage);
                 xPos += 220;
                 index++;
@@ -161,24 +184,7 @@ function MovieTool() {
         _helpers.clearCanvas();
         if (_currentAnimationPosition < _imageData.length) {
             if (_imageData[_currentAnimationPosition]) {
-                if ("string" == typeof _imageData[_currentAnimationPosition]) {
-                    loadImage(
-                        _imageData[_currentAnimationPosition],
-                        img => {
-                            _imageWidth = img.width
-                            _imageHeight = img.height
-                            image(img, 0, 0)
-                        },
-                        error => {
-                            alert('Unable to load image: ' + error)
-                        }
-                    )
-                }
-                else {
-                    _imageWidth = _imageData[_currentAnimationPosition].width
-                    _imageHeight = _imageData[_currentAnimationPosition].height
-                    image(_imageData[_currentAnimationPosition], 0, 0)
-                }
+                image(_imageData[_currentAnimationPosition], 0, 0, SIZE.width, SIZE.height)
                 _currentAnimationPosition++
             }
         } else if (_repeatAnimation.checked()) {
@@ -200,8 +206,8 @@ function MovieTool() {
                 download: true,
                 options: {
                     repeat: _repeatAnimation.checked() ? 0 : -1,
-                    width: _imageWidth,
-                    height: _imageHeight,
+                    width: SIZE.width,
+                    height: SIZE.height
                 }
             }
         })
