@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Snappy Art Pad</title>
+
+    <!-- Main Libraries-->
+    <script src="lib/p5.min.js"></script>
+    <script src="lib/p5.dom.js"></script>
+    <script src="lib/p5.createloop/dist/main.js"></script>
+    <script src="sketch.js"></script>
+
+    <!-- Helpers -->
+    <script src="toolbox.js"></script>
+    <script src="colourPalette.js"></script>
+    <script src="helperFunctions.js"></script>
+
+    <!-- Components -->
+    <script src="components/imagerect.js"></script>
+
+    <!-- Extensions -->
+    <script src="tools/eraserTool.js"></script>
+    <script src="tools/freehandTool.js"></script>
+    <script src="tools/lineToTool.js"></script>
+    <script src="tools/mirrorDrawTool.js"></script>
+    <script src="tools/sprayCanTool.js"></script>
+    <script src="tools/shapeTool.js"></script>
+    <script src="tools/stampTool.js"></script>
+    <script src="tools/movieTool.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="box header">
+            <div>
+                Snappy Art Pad
+                <image id="clearButton" class="actionButton" src="assets/clear.png" title="Clear"></image>
+                <image id="saveImageButton" class="actionButton" src="assets/save_picture.png" title="Save picture as an image to your computer"></image>
+                <image id="undoButton" class="actionButton" src="assets/undo.png" title="Undo last action"></image>
+            </div>
+        </div>
+        <div class="sidebar" id="sidebar"></div>
+        <div id="content"></div>
+        <div class="statusBar"></div>
+        <div id="picker"></div>
+        <div class="options"></div>
+    </div>
+</body>
+
+</html>
