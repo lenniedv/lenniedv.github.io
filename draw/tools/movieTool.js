@@ -149,7 +149,7 @@ function MovieTool() {
 
     function setupFrames() {
         var xPos = 100
-        var yPos = 100
+        var yPos = 50
         var index = 0
         for (var y = 0; y < 2; y++) {
             for (var x = 0; x < 6; x++) {
@@ -158,7 +158,7 @@ function MovieTool() {
                 xPos += 220
                 index++
             }
-            yPos += 250
+            yPos += 300
             xPos = 100
         }
     }
